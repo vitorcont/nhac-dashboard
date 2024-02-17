@@ -1,0 +1,95 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id    String  @id @default(uuid())
+  email String
+  name  String?
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  favorites UserFavorites[]
+
+  @@map("user")
+}
+
+model UserFavorites {
+  id           String    @id @default(uuid())
+  userId       String    @map("user_id")
+  restaurantId String    @map("restaurant_id")
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime? @map("updated_at")
+  deletedAt    DateTime? @map("deleted_at")
+
+  user       User        @relation(fields: [userId], references: [id], onDelete: NoAction)
+  restaurant Restaurants @relation(fields: [restaurantId], references: [id], onDelete: NoAction)
+
+  @@map("user_favorites")
+}
+
+model Restaurants {
+  id             String  @id @default(uuid())
+  name           String
+  description    String?
+  phone          String?
+  logo_url       String?
+  background_url String?
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  address       Address?
+  items         Items[]
+  userFavorites UserFavorites[]
+
+  @@map("restaurants")
+}
+
+model Address {
+  id           String  @id @default(uuid())
+  street       String
+  number       String
+  complement   String?
+  neighborhood String
+  city         String
+  state        String
+  country      String
+  zip_code     String
+  restaurantId String  @unique @map("restaurant_id")
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  restaurant Restaurants @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+
+  @@map("address")
+}
+
+model Items {
+  id          String  @id @default(uuid())
+  name        String
+  description String?
+  price       Float
+  image_url   String?
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  restaurantId String @map("restaurant_id")
+
+  restaurant Restaurants @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+
+  @@map("items")
+}

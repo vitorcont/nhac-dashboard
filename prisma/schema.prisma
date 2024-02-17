@@ -30,19 +30,19 @@ model UserFavorites {
   updatedAt    DateTime? @map("updated_at")
   deletedAt    DateTime? @map("deleted_at")
 
-  user       User        @relation(fields: [userId], references: [id], onDelete: NoAction)
-  restaurant Restaurants @relation(fields: [restaurantId], references: [id], onDelete: NoAction)
+  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  restaurant Restaurants @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
 
   @@map("user_favorites")
 }
 
 model Restaurants {
-  id             String  @id @default(uuid())
-  name           String
-  description    String?
-  phone          String?
-  logo_url       String?
-  background_url String?
+  id            String  @id @default(uuid())
+  name          String
+  description   String?
+  phone         String?
+  logoUrl       String? @map("logo_url")
+  backgroundUrl String? @map("background_url")
 
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime? @map("updated_at")
@@ -64,7 +64,7 @@ model Address {
   city         String
   state        String
   country      String
-  zip_code     String
+  zipcode      String
   restaurantId String  @unique @map("restaurant_id")
 
   createdAt DateTime  @default(now()) @map("created_at")
@@ -77,17 +77,16 @@ model Address {
 }
 
 model Items {
-  id          String  @id @default(uuid())
-  name        String
-  description String?
-  price       Float
-  image_url   String?
+  id           String  @id @default(uuid())
+  name         String
+  description  String?
+  price        Float
+  imageUrl     String? @map("image_url")
+  restaurantId String  @map("restaurant_id")
 
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime? @map("updated_at")
   deletedAt DateTime? @map("deleted_at")
-
-  restaurantId String @map("restaurant_id")
 
   restaurant Restaurants @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
 

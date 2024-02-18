@@ -1,0 +1,65 @@
+.button-container {
+  width: 100%;
+}
+
+.sizes {
+  width: 100%;
+  padding: 14px 50px;
+  border-radius: 50px;
+  font-size: 16px;
+  word-wrap: break-word;
+  font-family: $inter-bold;
+  @media screen and (max-width: 768px) {
+    padding: 14px 20px;
+  }
+}
+
+.filled-button {
+  background: $primary 0% 0% no-repeat padding-box;
+  color: white;
+  border: 0px !important;
+  &__disabled {
+    color: $disabled;
+    font-size: 16px;
+    background: #fff 0% 0% no-repeat padding-box;
+    border: 2px solid $disabled;
+    &:focus {
+      outline: 0px !important;
+    }
+  }
+  &:focus {
+    outline: 0px !important;
+    cursor: pointer;
+  }
+}
+
+.outlined-button {
+  background: #fff 0% 0% no-repeat padding-box;
+  border: 1px solid $primary;
+  color: $primary;
+  &:focus {
+    outline: 0px !important;
+    cursor: pointer;
+  }
+  &__disabled {
+    color: $disabled;
+    background: #fff 0% 0% no-repeat padding-box;
+    border: 1px solid $disabled;
+    &:focus {
+      outline: 0px !important;
+    }
+  }
+}
+
+.filled-button:hover,
+.outlined-button:hover {
+  box-shadow: 0px 3px 6px #00000029;
+  border-color: $primary;
+  cursor: pointer;
+}
+
+.filled-button__disabled:hover,
+.outlined-button__disabled:hover {
+  cursor: default;
+  border-color: $disabled;
+}

@@ -1,0 +1,115 @@
+$inter-extraLight: "Inter ExtraLight";
+$inter-light: "Inter Light";
+$inter-regular: "Inter Regular";
+$inter-semiBold: "Inter SemiBold";
+$inter-bold: "Inter Bold";
+@font-face {
+  font-family: "Inter Regular";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v12/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2)
+    format("woff2");
+}
+
+@font-face {
+  font-family: "Inter Bold";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuFuYAZ9hiA.woff2)
+    format("woff2");
+}
+
+@font-face {
+  font-family: "Inter SemiBold";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v12/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2)
+    format("woff2");
+}
+
+@font-face {
+  font-family: "Inter Light";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v12/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2)
+    format("woff2");
+}
+
+@font-face {
+  font-family: "Inter ExtraLight";
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v12/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2)
+    format("woff2");
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $text-secundary;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+a {
+  font-size: 1rem;
+  font-family: $inter-regular;
+  color: $primary;
+}
+
+b,
+p,
+li {
+  font-size: 1rem;
+  font-family: $inter-regular;
+  color: $text-primary;
+  list-style-type: circle;
+}
+
+.hyperlink {
+  text-decoration: underline;
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
+
+.bold {
+  font-family: $inter-bold;
+  font-weight: 700;
+}
+
+.semi-bold {
+  font-family: $inter-semiBold;
+  font-weight: 600;
+}
+
+.regular {
+  font-family: $inter-regular;
+  font-weight: 400;
+}
+
+.light {
+  font-family: $inter-light;
+  font-weight: 300;
+}
+
+.text-primary {
+  color: $text-primary;
+}
+
+.primary {
+  color: $primary;
+}
+
+.text-secundary {
+  color: $text-secundary;
+}

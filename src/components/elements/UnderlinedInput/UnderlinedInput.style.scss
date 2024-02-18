@@ -1,0 +1,22 @@
+.MuiInput-underline:before {
+  border-bottom: 2px solid #979797 !important;
+  margin-top: 0px !important;
+}
+
+.MuiInput-underline:after {
+  background-color: turquoise;
+}
+
+.MuiFormHelperText-root {
+  font-family: $inter-regular !important;
+  margin-left: 0px !important;
+}
+
+.input-loading {
+  height: 15px !important;
+  width: 15px !important;
+}
+
+.MuiInput-input:focus {
+  background-color: rgba(190, 190, 190, 0.06);
+}

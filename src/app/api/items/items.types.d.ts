@@ -1,4 +1,3 @@
-import { $Enums } from "@prisma/client";
 export as namespace IItems;
 
 export interface ICreateItem {

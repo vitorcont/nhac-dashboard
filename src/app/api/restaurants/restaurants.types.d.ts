@@ -1,4 +1,5 @@
 import { $Enums } from "@prisma/client";
+
 export as namespace IRestaurants;
 
 export interface ICreateAddress {
@@ -25,10 +26,11 @@ export interface ICreateRestaurants {
   phone?: string;
   logoUrl?: string;
   backgroundUrl?: string;
+  category: $Enums.Category;
   address: ICreateAddress;
 }
 
-export interface IRestaurant extends Omit<"address", ICreateRestaurants> {
+export interface IRestaurant extends Omit<ICreateRestaurants, "address"> {
   id: string;
   createdAt?: string | Date | null;
   updatedAt?: string | Date | null;

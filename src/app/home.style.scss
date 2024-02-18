@@ -1,16 +1,20 @@
 .cover-icon {
   width: 100%;
   object-fit: cover;
-  z-index: 0;
+  z-index: 1;
   position: absolute;
   min-height: 24rem;
-  @media screen and (min-width: 1500px) {
-    margin-top: -8rem;
+  --viewport-width: 100vw;
+  --viewport-height: 100vh;
+  --ratio: calc(100vw / 100vh);
+  @media screen and (min-width: 1436px) {
+    max-height: 24rem;
+    // margin-top: math.div(100vw, 1px);
   }
-  @media screen and (min-width: 2000px) {
-    margin-top: -16rem;
-  }
-  @media screen and (min-width: 2000px) {
-    max-height: 36rem;
-  }
+  // @media screen and (min-width: 2000px) {
+  //   margin-top: -16rem;
+  // }
+  // @media screen and (min-width: 2000px) {
+  //   max-height: 36rem;
+  // }
 }

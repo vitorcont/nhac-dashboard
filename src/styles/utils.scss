@@ -17,11 +17,11 @@ body {
 }
 
 main {
-  overflow-y: none;
+  overflow-y: hidden !important;
   position: relative;
   width: max-content;
   max-width: 100vw;
-  overflow-x: none !important;
+  overflow-x: hidden !important;
   display: flex;
   min-height: 100vh;
   flex-direction: column;

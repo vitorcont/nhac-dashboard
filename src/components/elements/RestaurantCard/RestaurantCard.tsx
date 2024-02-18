@@ -3,7 +3,7 @@ export interface RestaurantCardProps {
   iconUrl: string;
   backgroundUrl: string;
   name: string;
-  description: string;
+  description?: string;
 }
 
 export const RestaurantCard = (props: RestaurantCardProps) => (

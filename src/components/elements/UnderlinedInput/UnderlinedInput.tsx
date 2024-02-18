@@ -1,6 +1,8 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element */
+import VisibleIcon from "@mui/icons-material/RemoveRedEye";
+import MaskedIcon from "@mui/icons-material/VisibilityOff";
 import {
   CircularProgress,
   IconButton,
@@ -10,9 +12,6 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import InputMask from "react-input-mask";
-
-import VisibleIcon from "../../../assets/icons/ic_eye.svg";
-import MaskedIcon from "../../../assets/icons/ic_eye_masked.svg";
 
 export interface UnderlinedInputProps extends StandardTextFieldProps {
   password?: boolean;
@@ -93,7 +92,7 @@ export const UnderlinedInput = (props: UnderlinedInputProps) => {
             aria-label="toggle password visibility"
             onClick={() => setPassword(!password)}
             edge="end">
-            <img src={(!password ? MaskedIcon : VisibleIcon) as string} draggable={false} alt="" />
+            {!password ? <MaskedIcon /> : <VisibleIcon />}
           </IconButton>
         </InputAdornment>
       );

@@ -37,12 +37,13 @@ model UserFavorites {
 }
 
 model Restaurants {
-  id            String  @id @default(uuid())
+  id            String    @id @default(uuid())
   name          String
   description   String?
   phone         String?
-  logoUrl       String? @map("logo_url")
-  backgroundUrl String? @map("background_url")
+  logoUrl       String?   @map("logo_url")
+  backgroundUrl String?   @map("background_url")
+  category      Category?
 
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime? @map("updated_at")
@@ -91,4 +92,17 @@ model Items {
   restaurant Restaurants @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
 
   @@map("items")
+}
+
+enum Category {
+  BRAZILIAN
+  CHINESE
+  JAPANESE
+  MEXICAN
+  ITALIAN
+  FAST_FOOD
+  VEGETARIAN
+  VEGAN
+  NEW
+  OTHER
 }

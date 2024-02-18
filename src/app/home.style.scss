@@ -1,0 +1,16 @@
+.cover-icon {
+  width: 100%;
+  object-fit: cover;
+  z-index: 0;
+  position: absolute;
+  min-height: 24rem;
+  @media screen and (min-width: 1500px) {
+    margin-top: -8rem;
+  }
+  @media screen and (min-width: 2000px) {
+    margin-top: -16rem;
+  }
+  @media screen and (min-width: 2000px) {
+    max-height: 36rem;
+  }
+}

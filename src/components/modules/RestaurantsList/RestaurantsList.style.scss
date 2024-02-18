@@ -1,0 +1,9 @@
+.restaurants-horizontal {
+  z-index: 10;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  ::-webkit-scrollbar {
+    opacity: 0 !important;
+    height: 0 !important;
+  }
+}

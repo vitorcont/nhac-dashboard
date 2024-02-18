@@ -17,13 +17,15 @@ body {
 }
 
 main {
+  overflow-y: none;
+  position: relative;
   width: max-content;
   max-width: 100vw;
   overflow-x: none !important;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  padding-top: 4rem;
+  padding-top: 2rem;
 }
 
 .status-dot {

@@ -6,7 +6,7 @@ export interface ItemCardProps {
   price?: string;
 }
 
-export const ItemCard = (props: ItemCardProps) => (
+export const ItemCard = (props: IItems.IItem) => (
   <div className="item-card">
     <div className="relative flex">
       <img className="item-card__background-img" src={props.imageUrl} alt={props.name} />

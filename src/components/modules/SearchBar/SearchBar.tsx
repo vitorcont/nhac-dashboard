@@ -1,6 +1,7 @@
 "use client";
 
 import SearchIcon from "@mui/icons-material/Search";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import { DefaultAutocomplete } from "@portal/components/elements/DefaultAutocomplete/DefaultAutocomplete";
@@ -11,6 +12,7 @@ export const SearchBar = () => {
   const { restaurantFilteredList, restaurantList, setRestaurantFilteredList } = useRestaurantsStore(
     (state) => state
   );
+  const router = useRouter();
 
   const [typingTimeout, setTypingTimeout] = useState<NodeJS.Timeout | null>(null);
 
@@ -57,6 +59,10 @@ export const SearchBar = () => {
         </div>
       )}
       size="small"
+      onChange={(event, value) => {
+        if (!value) return;
+        router.push(`/${value.id}`);
+      }}
       placeholder="Buscar restaurantes..."
       onChangeText={(value) => {
         onChange(value);

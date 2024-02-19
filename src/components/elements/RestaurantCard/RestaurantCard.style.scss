@@ -5,6 +5,7 @@
   background-color: white;
   border-radius: 0.75rem;
   overflow: hidden;
+  max-height: 230px;
   transition: linear 0.2s;
   cursor: pointer;
   &__background-img {
@@ -31,6 +32,12 @@
       object-fit: cover;
       border-radius: 70px;
     }
+  }
+  &__description {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-wrap: nowrap;
   }
 }
 

@@ -22,12 +22,7 @@ export const RestaurantsHorizontal = (props: RestaurantsHorizontalProps) => (
       {props.data.map((item, index) => (
         <Grid marginLeft={3} key={index}>
           <div className="w-72">
-            <RestaurantCard
-              name={item.name}
-              description={item.description}
-              backgroundUrl={item.backgroundUrl ?? ""}
-              iconUrl={item.logoUrl ?? ""}
-            />
+            <RestaurantCard {...item} />
           </div>
         </Grid>
       ))}

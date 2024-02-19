@@ -21,12 +21,7 @@ export const RestaurantsVertical = (props: RestaurantsVerticalProps) => (
     <Grid container spacing={3} className="pd-sides w-full flex flex-row overflow-hidden py-6">
       {props.data.map((item, index) => (
         <Grid item xs={12} sm={6} md={4} lg={3} xl={3} key={index}>
-          <RestaurantCard
-            name={item.name}
-            description={item.description}
-            backgroundUrl={item.backgroundUrl ?? ""}
-            iconUrl={item.logoUrl ?? ""}
-          />
+          <RestaurantCard {...item} />
         </Grid>
       ))}
     </Grid>

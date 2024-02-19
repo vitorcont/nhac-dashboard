@@ -28,12 +28,14 @@ export interface ICreateRestaurants {
   backgroundUrl?: string;
   category: $Enums.Category;
   address: ICreateAddress;
+  items: IItems.ICreateItem[];
 }
 
-export interface IRestaurant extends Omit<ICreateRestaurants, "address"> {
+export interface IRestaurant extends Omit<ICreateRestaurants, ["address", "items"]> {
   id: string;
   createdAt?: string | Date | null;
   updatedAt?: string | Date | null;
   deletedAt?: string | Date | null;
   address: IAddress;
+  items: IItems.IItem[];
 }

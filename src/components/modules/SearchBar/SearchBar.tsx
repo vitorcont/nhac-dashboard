@@ -46,7 +46,7 @@ export const SearchBar = () => {
       options={restaurantFilteredList}
       isOptionEqualToValue={(option, value) => option.name === value.name}
       getOptionLabel={(option) => option.name}
-      InputProps={{
+      inputprops={{
         startAdornment: <SearchIcon className="ml-2" fontSize="medium" color="primary" />,
       }}
       noOptionsText="Nenhum restaurante encontrado..."

@@ -11,7 +11,7 @@ export interface DefaultAutocompleteProps
   extends Omit<AutocompleteProps<any, any, any, any>, "renderInput"> {
   success?: boolean;
   label?: string;
-  InputProps?: InputProps;
+  inputprops?: InputProps;
   onChangeText?: (value: string) => void;
   text?: string;
   placeholder?: string;
@@ -35,7 +35,7 @@ export const DefaultAutocomplete = (props: DefaultAutocompleteProps) => {
           }}
           InputProps={{
             ...params.InputProps,
-            ...props.InputProps,
+            ...props.inputprops,
           }}
           label={props.label}
         />

@@ -37,8 +37,24 @@
     background-color: white;
     border-radius: 12px;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
+    justify-content: space-between;
     padding: 1.5rem;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    &__address {
+      display: flex;
+      flex-direction: row;
+      @media screen and (max-width: 768px) {
+        margin-top: 30px;
+      }
+    }
+    &__line {
+      width: 6px;
+      height: 100%;
+      background-color: $primary;
+      margin: 0 10px;
+      border-radius: 40px;
+    }
   }
 }

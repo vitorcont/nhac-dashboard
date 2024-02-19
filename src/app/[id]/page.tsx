@@ -1,26 +1,32 @@
 "use client";
 /* eslint-disable @next/next/no-img-element */
+import LanguageIcon from "@mui/icons-material/Language";
+import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
+import RoomIcon from "@mui/icons-material/Room";
 import { Grid } from "@mui/material";
 import { $Enums } from "@prisma/client";
 import { useEffect, useMemo } from "react";
 
-import { Banner } from "@portal/components/elements/Banner/Banner";
+import { ItemList } from "@portal/components/modules/ItemList/ItemList";
 import { RestaurantsHorizontal } from "@portal/components/modules/RestaurantsList/RestaurantsHorizontal";
-import { RestaurantsVertical } from "@portal/components/modules/RestaurantsList/RestaurantsVertical";
 import { restaurantsApi } from "@portal/service/restaurants.api";
 import useRestaurantsStore from "@portal/store/restaurants.store";
 export default function Restauranttails() {
   const { restaurantList, setRestaurantFilteredList, setRestaurantList } = useRestaurantsStore(
     (state) => state
   );
-  const newRestaurants = useMemo(
-    () => restaurantList.filter((restaurant) => restaurant.category === $Enums.Category.NEW),
-    [restaurantList]
-  );
-  const otherRestaurants = useMemo(
-    () => restaurantList.filter((restaurant) => restaurant.category !== $Enums.Category.NEW),
-    [restaurantList]
-  );
+
+  const info = {
+    address: {
+      icon: <RoomIcon color="primary" />,
+      text: "Rua Sampaio Vidal, 1072 - Jardim Paulistano, São Paulo - SP, 01434-001",
+    },
+    phone: {
+      icon: <LocalPhoneIcon color="primary" />,
+      text: "(11) 3081-5211",
+    },
+  };
+
   const findDetails = async () => {
     try {
       const data = await restaurantsApi.list();
@@ -36,7 +42,7 @@ export default function Restauranttails() {
   }, []);
 
   return (
-    <Grid container>
+    <Grid container flexDirection="column" alignItems={"flex-end"} justifyContent={"space-between"}>
       <section className="pd-sides w-full">
         <div className="restaurant-details__background">
           <div className="restaurant-details__background__icon">
@@ -55,20 +61,103 @@ export default function Restauranttails() {
       </section>
       <section className=" mt-8 pd-sides w-full">
         <div className="restaurant-details__details">
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
             <h1 className="text-3xl semi-bold text-secundary">Adega Santiago</h1>
             <p className="mt-2">
               O restaurante Adega Santiago é um dos mais tradicionais de São Paulo, com um ambiente
               agradável e uma culinária de dar água na boca.
             </p>
           </Grid>
-          <Grid item xs={4} className="flex flex-row">
-            <div className="h-full w-[10px] mx-3 bg-primary rounded-xl"></div>
-            <div>
-              <p className="mt-2">O restaurante Adega Santiago é um dos mais tradici</p>
+          <Grid
+            item
+            xs={12}
+            sm={12}
+            md={4}
+            lg={4}
+            xl={3}
+            className="restaurant-details__details__address">
+            <div className="restaurant-details__details__line"></div>
+            <div className="flex flex-col">
+              <span className="flex-row mt-2">
+                <>{info.address.icon}</>
+                <a
+                  className="ml-2 underline"
+                  href={`https://www.google.com/maps/search/?q=${encodeURI(info.address.text)}`}>
+                  {info.address.text}
+                </a>
+              </span>
+              <span className="flex-row mt-2">
+                <>{info.phone.icon}</>
+                <p className="ml-2">{info.phone.text}</p>
+              </span>
             </div>
           </Grid>
         </div>
+      </section>
+      <ItemList
+        className="overflow-hidden "
+        title="Cardápio"
+        data={[
+          {
+            id: "1",
+            name: "Item 1",
+            price: 10.99,
+            description: "Lorem ipsum dolor sit amet,  nunc ac nunc.'",
+            restaurantId: "1234",
+            imageUrl: "https://via.placeholder.com/150",
+          },
+          {
+            id: "1",
+            name: "Item 1",
+            price: 10.99,
+            description: "Lorem ipsum dolor sit amet,  nunc ac nunc.'",
+            restaurantId: "1234",
+            imageUrl: "https://via.placeholder.com/150",
+          },
+          {
+            id: "1",
+            name: "Item 1",
+            price: 10.99,
+            description: "Lorem ipsum dolor sit amet,  nunc ac nunc.'",
+            restaurantId: "1234",
+            imageUrl: "https://via.placeholder.com/150",
+          },
+          {
+            id: "1",
+            name: "Item 1",
+            price: 10.99,
+            description: "Lorem ipsum dolor sit amet,  nunc ac nunc.'",
+            restaurantId: "1234",
+            imageUrl: "https://via.placeholder.com/150",
+          },
+          {
+            id: "1",
+            name: "Item 1",
+            price: 10.99,
+            description: "Lorem ipsum dolor sit amet,  nunc ac nunc.'",
+            restaurantId: "1234",
+            imageUrl: "https://via.placeholder.com/150",
+          },
+          {
+            id: "1",
+            name: "Item 1",
+            price: 10.99,
+            description: "Lorem ipsum dolor sit amet,  nunc ac nunc.'",
+            restaurantId: "1234",
+            imageUrl: "https://via.placeholder.com/150",
+          },
+          {
+            id: "1",
+            name: "Item 1",
+            price: 10.99,
+            description: "Lorem ipsum dolor sit amet,  nunc ac nunc.'",
+            restaurantId: "1234",
+            imageUrl: "https://via.placeholder.com/150",
+          },
+        ]}
+      />
+      <section className="w-full bg-primary pb-4 ">
+        <RestaurantsHorizontal data={restaurantList} title="Outras opções" />
       </section>
     </Grid>
   );

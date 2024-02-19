@@ -5,7 +5,7 @@ interface IRestaurantsStore {
   restaurantFilteredList: IRestaurants.IRestaurant[];
 }
 
-import create from "zustand";
+import { create } from "zustand";
 
 interface IRestaurantsAction {
   setRestaurantList: (restaurantList: IRestaurants.IRestaurant[]) => void;

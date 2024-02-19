@@ -1,0 +1,22 @@
+.item-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: linear 0.2s;
+  cursor: pointer;
+  &__background-img {
+    width: 100%;
+    object-fit: cover;
+    z-index: 2;
+    max-height: 230px;
+  }
+}
+
+.item-card:hover {
+  transform: scale(1.1);
+  transition: linear 0.2s;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}

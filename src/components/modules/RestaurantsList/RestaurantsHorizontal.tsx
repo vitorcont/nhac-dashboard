@@ -12,13 +12,13 @@ interface RestaurantsHorizontalProps {
 export const RestaurantsHorizontal = (props: RestaurantsHorizontalProps) => (
   <section className={`restaurants-horizontal w-full mt-10 flex flex-col ${props.className}`}>
     <h2
-      className="text-xl bold ml-24"
+      className="text-xl bold pd-sides"
       style={{
         color: props.titleColor ?? "white",
       }}>
       {props.title}
     </h2>
-    <div className="flex-row overflow-y-hidden overflow-x-scroll px-24 py-6">
+    <div className="flex-row overflow-y-hidden overflow-x-scroll pd-sides py-6">
       {props.data.map((item, index) => (
         <Grid marginLeft={3} key={index}>
           <div className="w-72">

@@ -1,0 +1,44 @@
+.restaurant-details {
+  &__background {
+    height: 300px;
+    width: 100%;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    @media screen and (max-width: 768px) {
+      height: 200px;
+    }
+    &__icon {
+      display: flex;
+      width: 12rem;
+      height: 12rem;
+      border-radius: 20rem;
+      position: absolute;
+      left: 3%;
+      background-color: white;
+      z-index: 3;
+      align-self: center;
+      align-items: center;
+      justify-content: center;
+      @media screen and (max-width: 768px) {
+        width: 6rem;
+        height: 6rem;
+      }
+      &__image {
+        width: 88%;
+        height: 88%;
+        object-fit: cover;
+        border-radius: 20rem;
+      }
+    }
+  }
+  &__details {
+    background-color: white;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: row;
+    padding: 1.5rem;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  }
+}

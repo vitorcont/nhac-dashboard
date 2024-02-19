@@ -19,13 +19,21 @@ body {
 main {
   overflow-y: hidden !important;
   position: relative;
-  width: max-content;
-  max-width: 100vw;
+  width: 100vw !important;
   overflow-x: hidden !important;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
   padding-top: 2rem;
+}
+
+.pd-sides {
+  padding-left: 6rem;
+  padding-right: 6rem;
+  @media screen and (max-width: 768px) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 }
 
 .status-dot {

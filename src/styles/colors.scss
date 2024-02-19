@@ -3,3 +3,10 @@ $background: #eeeeee;
 $text-primary: #787878;
 $text-secundary: #4f4f4f;
 $disabled: #575757;
+.bg-primary {
+  background-color: $primary;
+}
+
+.bg-background {
+  background-color: $background;
+}

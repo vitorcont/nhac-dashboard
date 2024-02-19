@@ -36,20 +36,18 @@ export default function Home() {
   }, []);
 
   return (
-    <main>
-      <Grid container>
-        <img src="/ic_background.svg" className="cover-icon" alt="logo" />
-        <RestaurantsHorizontal className="mt-14" data={newRestaurants} title="Novidades!" />
-        <div className="w-full flex flex-row justify-between px-24">
-          <Grid item xs={5.5}>
-            <Banner />
-          </Grid>
-          <Grid item xs={5.5}>
-            <Banner />
-          </Grid>
-        </div>
-        <RestaurantsVertical data={otherRestaurants} title="Outros restaurantes" />
-      </Grid>
-    </main>
+    <Grid container>
+      <img src="/ic_background.svg" className="cover-icon" alt="logo" />
+      <RestaurantsHorizontal className="mt-14" data={newRestaurants} title="Novidades!" />
+      <div className="w-full flex flex-row justify-between pd-sides">
+        <Grid item xs={5.9}>
+          <Banner />
+        </Grid>
+        <Grid item xs={5.9}>
+          <Banner />
+        </Grid>
+      </div>
+      <RestaurantsVertical data={otherRestaurants} title="Outros restaurantes" />
+    </Grid>
   );
 }

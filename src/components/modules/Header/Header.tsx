@@ -2,16 +2,12 @@
 
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { Grid, IconButton, Modal, Popover, Theme, Typography, useMediaQuery } from "@mui/material";
+import { IconButton, Popover, Theme, useMediaQuery } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 import React from "react";
 
-import { Button } from "@portal/components/elements/Button/Button";
 import { LabelButton } from "@portal/components/elements/LabelButton/LabelButton";
-import { ModalWrapper } from "@portal/components/elements/ModalWrapper/ModalWrapper";
-import { UnderlinedInput } from "@portal/components/elements/UnderlinedInput/UnderlinedInput";
-import { LoginModal } from "@portal/components/modules/LoginModal/LoginModal";
 import { SearchBar } from "@portal/components/modules/SearchBar/SearchBar";
 import { AuthActionEnum, AuthContext } from "@portal/context/auth-provider";
 

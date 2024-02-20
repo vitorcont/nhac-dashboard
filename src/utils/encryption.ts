@@ -52,10 +52,9 @@ export const decriptString = (data: string) => {
 
 export const encryptString = (data: string) => {
   try {
-    const algorithm = process.env.ALGORITHM || "aes-256-cbc";
+    const algorithm = process.env.ALGORITHM;
     const key = process.env.SECRET_KEY_ENCRYPT;
     const initVector = process.env.VECTOR_INITIALIZER;
-    console.log("AQUI", key, initVector, algorithm);
 
     if (
       typeof key !== "string" ||

@@ -86,7 +86,11 @@ export const LoginModal = (props: ModalWrapperProps) => {
               <p className=" primary">Já tenho minha conta</p>
               <hr className="w-2/12" />
             </div>
-            <form onSubmit={formik.handleSubmit} className="py-4 mx-8 flex-col items-center">
+            <form
+              onSubmit={(e) => {
+                !loading ? formik.handleSubmit(e) : () => {};
+              }}
+              className="py-4 mx-8 flex-col items-center">
               <UnderlinedInput
                 label="e-mail"
                 className="mt-6"
@@ -105,7 +109,12 @@ export const LoginModal = (props: ModalWrapperProps) => {
                 helperText={formik.errors.password}
               />
               <div className="mt-12">
-                <Button label="Entrar" type="submit" loading={loading} />
+                <Button
+                  label="Entrar"
+                  type="submit"
+                  disabled={!!(formik.errors.email || formik.errors.password)}
+                  loading={loading}
+                />
               </div>
             </form>
           </div>

@@ -50,7 +50,7 @@ export const Button = ({
     <div className="button-container">
       <button
         disabled={disabled === true && disabled}
-        onClick={() => (disabled ? () => {} : onPress())}
+        onClick={() => (disabled || loading ? () => {} : onPress())}
         className={`sizes ${getClassName()} ${className}`}
         type={type}
         style={{

@@ -3,6 +3,7 @@
 import React, { createContext, useEffect, useReducer } from "react";
 
 import { userApi } from "@portal/service/user.api";
+import { LocalStorageEnum, getLocalKey, setLocalKey } from "@portal/utils/local-storage";
 
 const initialState: AuthState = {
   user: null,
@@ -32,6 +33,7 @@ const authReducer = (state: AuthState, action: AuthAction): AuthState => {
         user: action.payload || null,
       };
     case AuthActionEnum.LOGOUT:
+      setLocalKey(LocalStorageEnum.ACCESS_TOKEN, "");
       return {
         ...state,
         user: null,
@@ -55,9 +57,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
   const getMe = async () => {
     try {
-      const data = await userApi.getMe();
+      const token = getLocalKey(LocalStorageEnum.ACCESS_TOKEN);
+      const data = await userApi.getMe(token ?? "");
       dispatch({ type: AuthActionEnum.LOGIN, payload: data });
     } catch (err) {
+      setLocalKey(LocalStorageEnum.ACCESS_TOKEN, "");
       console.error(err);
     }
   };

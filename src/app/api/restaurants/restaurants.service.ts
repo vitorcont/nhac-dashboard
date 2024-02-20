@@ -12,6 +12,9 @@ const restaurantsService = {
               ...body.address,
             },
           },
+          items: {
+            create: body.items,
+          },
         },
       });
 
@@ -52,6 +55,7 @@ const restaurantsService = {
               ...body.address,
             },
           },
+          items: undefined,
         },
         include: {
           address: true,

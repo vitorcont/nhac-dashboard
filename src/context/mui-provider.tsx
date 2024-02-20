@@ -1,7 +1,6 @@
 "use client";
 
 import { createTheme, ThemeProvider } from "@mui/material";
-import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterLuxon } from "@mui/x-date-pickers/AdapterLuxon";
 import React from "react";
 import { I18nextProvider } from "react-i18next";
@@ -18,14 +17,15 @@ const MuiProvider = (props: MuiProviderProps) => {
       primary: {
         main: "#BC0505",
       },
+      secondary: {
+        main: "#4c4c4c",
+      },
     },
-  } as any);
+  });
 
   return (
     <I18nextProvider i18n={i18n} defaultNS="translation">
-      <LocalizationProvider dateAdapter={AdapterLuxon} adapterLocale="pt">
-        <ThemeProvider theme={theme}>{props.children}</ThemeProvider>
-      </LocalizationProvider>
+      <ThemeProvider theme={theme}>{props.children}</ThemeProvider>
     </I18nextProvider>
   );
 };

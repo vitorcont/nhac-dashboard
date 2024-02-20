@@ -84,7 +84,7 @@ export const UnderlinedInput = (props: UnderlinedInputProps) => {
     }
   };
 
-  const getEndAdornment = () => {
+  const getEndAdornment = (): any => {
     if (props.password) {
       return (
         <InputAdornment position="end">
@@ -115,7 +115,6 @@ export const UnderlinedInput = (props: UnderlinedInputProps) => {
           type={password ? "password" : props.type ?? "text"}
           error={props.error || internError}
           InputProps={{
-            startAdornment: props.StartAdornment,
             endAdornment: getEndAdornment(),
             ...props.InputProps,
           }}

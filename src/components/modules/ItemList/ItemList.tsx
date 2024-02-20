@@ -21,12 +21,7 @@ export const ItemList = (props: ItemListProps) => (
     <Grid container spacing={3} className="pd-sides w-full flex flex-row overflow-hidden py-6">
       {props.data.map((item, index) => (
         <Grid item xs={6} sm={6} md={4} lg={3} xl={3} key={index}>
-          <ItemCard
-            name={item.name}
-            description={item.description}
-            imageUrl={item.imageUrl ?? ""}
-            price={`${item.price}`}
-          />
+          <ItemCard {...item} />
         </Grid>
       ))}
     </Grid>

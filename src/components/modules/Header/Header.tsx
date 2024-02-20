@@ -2,22 +2,32 @@
 
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { Button, IconButton, Popover, Typography } from "@mui/material";
+import { Grid, IconButton, Modal, Popover, Theme, Typography, useMediaQuery } from "@mui/material";
 import { useRouter } from "next/navigation";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import React from "react";
 
+import { Button } from "@portal/components/elements/Button/Button";
 import { LabelButton } from "@portal/components/elements/LabelButton/LabelButton";
+import { ModalWrapper } from "@portal/components/elements/ModalWrapper/ModalWrapper";
+import { UnderlinedInput } from "@portal/components/elements/UnderlinedInput/UnderlinedInput";
+import { LoginModal } from "@portal/components/modules/LoginModal/LoginModal";
 import { SearchBar } from "@portal/components/modules/SearchBar/SearchBar";
 import { AuthActionEnum, AuthContext } from "@portal/context/auth-provider";
 
-export const Header = () => {
+interface HeaderProps {
+  setOpenLogin: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export const Header = (props: HeaderProps) => {
   const {
     state: { user },
     dispatch,
   } = useContext(AuthContext);
   const router = useRouter();
-  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+  const downMd = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
+
   const open = Boolean(anchorEl);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -38,29 +48,34 @@ export const Header = () => {
             <b className="text-3xl ml-2 bold primary">Nhac!</b>
           </h1>
         </nav>
-        <nav className="w-7/12">
+        <nav className={"w-7/12"}>
           <SearchBar />
         </nav>
-        <>
-          {!user ? (
-            <nav>
-              <p className="primary bold">Entrar</p>
-            </nav>
-          ) : (
-            <div className="flex flex-row">
-              <nav className="mr-2">
-                <IconButton onClick={() => router.push("/favorites")}>
-                  <FavoriteBorderIcon />
-                </IconButton>
-              </nav>
+        {!downMd && (
+          <>
+            {!user ? (
               <nav>
-                <IconButton onClick={handleClick}>
-                  <AccountCircleIcon />
-                </IconButton>
+                <LabelButton
+                  className="primary bold text-lg"
+                  value="Entrar"
+                  onClick={() => props.setOpenLogin(true)}></LabelButton>
               </nav>
-            </div>
-          )}
-        </>
+            ) : (
+              <div className="flex flex-row">
+                <nav className="mr-2">
+                  <IconButton onClick={() => router.push("/favorites")}>
+                    <FavoriteBorderIcon color="primary" />
+                  </IconButton>
+                </nav>
+                <nav>
+                  <IconButton onClick={handleClick}>
+                    <AccountCircleIcon color="primary" />
+                  </IconButton>
+                </nav>
+              </div>
+            )}
+          </>
+        )}
       </header>
       <div>
         <Popover
@@ -72,7 +87,7 @@ export const Header = () => {
             horizontal: "left",
           }}>
           <div className="p-3">
-            <LabelButton value="Meu Perfil" />
+            <LabelButton color="secondary" value="Meu Perfil" />
             <hr className="my-2" />
             <LabelButton
               className="bold"

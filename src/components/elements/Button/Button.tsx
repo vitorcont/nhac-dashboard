@@ -12,6 +12,7 @@ export interface ButtonProps {
   type?: "button" | "submit" | "reset";
   color?: string;
   outlinedColor?: string;
+  className?: string;
 }
 
 export const Button = ({
@@ -23,6 +24,7 @@ export const Button = ({
   type,
   color,
   outlinedColor,
+  className,
 }: ButtonProps) => {
   const getClassName = () => {
     let className = `${variant}-button`;
@@ -49,7 +51,7 @@ export const Button = ({
       <button
         disabled={disabled === true && disabled}
         onClick={() => (disabled ? () => {} : onPress())}
-        className={`sizes ${getClassName()}`}
+        className={`sizes ${getClassName()} ${className}`}
         type={type}
         style={{
           backgroundColor: color,

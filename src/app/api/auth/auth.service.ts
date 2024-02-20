@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-import { encryptString } from "@portal/utils/encryption";
+import { comparePassword, encryptString } from "@portal/utils/encryption";
 import { HttpError } from "@portal/utils/http";
 import prismaService from "@prisma/prisma";
 
@@ -22,15 +22,18 @@ const authService = {
         throw new HttpError(400, "Password not valid");
       }
 
+      const passwordMatched = await comparePassword(body.password, user.password);
+      if (!passwordMatched) {
+        throw new HttpError(400, "Password not valid");
+      }
       const token = jwt.sign(user, process.env.JWT_SECRET as string, {
         expiresIn: "4h",
       });
 
-      console.log(token);
-
       return token;
     } catch (error) {
       console.error(error);
+      throw error;
     }
   },
   validate: async (token: string) => {

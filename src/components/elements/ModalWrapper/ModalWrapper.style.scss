@@ -1,0 +1,14 @@
+.modal-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &__inside-card {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 8px;
+    z-index: 100;
+    overflow: hidden;
+  }
+}

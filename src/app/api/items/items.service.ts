@@ -1,5 +1,6 @@
-import prismaService from "@prisma/prisma";
 import { list } from "postcss";
+
+import prismaService from "@prisma/prisma";
 
 const itemsService = {
   create: async (body: IItems.ICreateItem) => {

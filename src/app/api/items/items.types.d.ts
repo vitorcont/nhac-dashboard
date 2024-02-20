@@ -4,7 +4,7 @@ export interface ICreateItem {
   name: string;
   description?: string;
   price: number;
-  restaurantId?: string;
+  restaurantId: string;
   imageUrl?: string;
 }
 

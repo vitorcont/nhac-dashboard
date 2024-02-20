@@ -1,5 +1,6 @@
 /* eslint-disable no-useless-catch */
 
+import { encryptString, hashPassword } from "@portal/utils/encryption";
 import { HttpError } from "@portal/utils/http";
 import prismaService from "@prisma/prisma";
 
@@ -10,7 +11,11 @@ const userService = {
         where: {
           id,
         },
-        include: {
+        select: {
+          id: true,
+          name: true,
+          createdAt: true,
+          updatedAt: true,
           favorites: true,
         },
       });
@@ -27,7 +32,10 @@ const userService = {
         where: {
           id,
         },
-        data: body,
+        data: {
+          ...body,
+          password: undefined,
+        },
       });
 
       return user;
@@ -56,19 +64,12 @@ const userService = {
         orderBy: {
           createdAt: "desc",
         },
-      });
-
-      return user;
-    } catch (error) {
-      console.error(error);
-      throw error;
-    }
-  },
-  findByEmail: async (email: string) => {
-    try {
-      const user = await prismaService.user.findFirst({
-        where: {
-          email,
+        select: {
+          id: true,
+          name: true,
+          createdAt: true,
+          updatedAt: true,
+          favorites: true,
         },
       });
 
@@ -80,8 +81,18 @@ const userService = {
   },
   create: async (body: IUser.ICreateUser) => {
     try {
+      const hashedPassword = await hashPassword(body.password);
+      const hashedEmail = await encryptString(body.email);
+
       const user = await prismaService.user.create({
-        data: body,
+        data: { ...body, password: hashedPassword, email: hashedEmail },
+        select: {
+          id: true,
+          name: true,
+          createdAt: true,
+          updatedAt: true,
+          favorites: true,
+        },
       });
 
       return user;

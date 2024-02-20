@@ -4,6 +4,7 @@ export as namespace IUser;
 export interface ICreateUser {
   email: string;
   name: string;
+  password: string;
 }
 
 export interface IUser extends ICreateUser {

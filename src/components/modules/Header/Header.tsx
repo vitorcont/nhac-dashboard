@@ -7,8 +7,7 @@ import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 import React from "react";
 
-import { LabelButton } from "@portal/components/elements/LabelButton/LabelButton";
-import { SearchBar } from "@portal/components/modules/SearchBar/SearchBar";
+import { LabelButton, SearchBar } from "@portal/components";
 import { AuthActionEnum, AuthContext } from "@portal/context/auth-provider";
 
 interface HeaderProps {

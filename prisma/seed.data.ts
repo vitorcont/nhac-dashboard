@@ -20,15 +20,13 @@ export const itemsSeed = [
     name: "Cerveja",
     description: "Cerveja gelada",
     price: 5.0,
-    imageUrl:
-      "https://www.receiteria.com.br/wp-content/uploads/receitas-de-pizza-de-calabresa-1-730x449.jpg",
+    imageUrl: "https://cdn.folhape.com.br/img/pc/1100/1/dn_arquivo/2023/08/cerveja.jpg",
   },
   {
     name: "Refrigerante",
     description: "Refrigerante gelado",
     price: 5.0,
-    imageUrl:
-      "https://www.receiteria.com.br/wp-content/uploads/receitas-de-pizza-de-calabresa-1-730x449.jpg",
+    imageUrl: "https://cdn.awsli.com.br/800x800/1310/1310308/produto/216645479/file-1xye75wzss.png",
   },
   {
     name: "Hamburguer",

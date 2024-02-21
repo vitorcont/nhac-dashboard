@@ -1,11 +1,16 @@
 import { NextResponse } from "next/server";
 
 import { HttpError } from "@portal/utils/http";
+
 import restaurantsService from "../restaurants.service";
 
 export async function GET(request: Request, { params }: { params: { id: string } }) {
   try {
-    const restaurant = await restaurantsService.get(params.id);
+    const userRaw = request.headers.get("user");
+    const user = JSON.parse(userRaw ?? "{}");
+    console.log(user, "user");
+
+    const restaurant = await restaurantsService.get(params.id, user?.id);
     if (!restaurant) {
       return NextResponse.json({ message: "User not found" }, { status: 404 });
     }

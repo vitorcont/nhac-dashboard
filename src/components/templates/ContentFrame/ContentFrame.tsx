@@ -2,10 +2,7 @@
 import { Theme, useMediaQuery } from "@mui/material";
 import { useState } from "react";
 
-import { Footer } from "@portal/components/modules/Footer/Footer";
-import { Header } from "@portal/components/modules/Header/Header";
-import { LoginModal } from "@portal/components/modules/LoginModal/LoginModal";
-import { RegisterModal } from "@portal/components/modules/RegisterModal/RegisterModal";
+import { Header, LoginModal, RegisterModal, Footer } from "@portal/components";
 
 interface ContentFrameProps {
   children: React.ReactNode;

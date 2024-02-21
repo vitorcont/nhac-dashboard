@@ -1,12 +1,10 @@
 "use client";
 /* eslint-disable @next/next/no-img-element */
-import { Grid, Theme, useMediaQuery } from "@mui/material";
+import { Grid } from "@mui/material";
 import { $Enums } from "@prisma/client";
 import { useEffect, useMemo, useState } from "react";
 
-import { Banner } from "@portal/components/elements/Banner/Banner";
-import { RestaurantsHorizontal } from "@portal/components/modules/RestaurantsList/RestaurantsHorizontal";
-import { RestaurantsVertical } from "@portal/components/modules/RestaurantsList/RestaurantsVertical";
+import { Banner, RestaurantsHorizontal, RestaurantsVertical } from "@portal/components";
 import { restaurantsApi } from "@portal/service/restaurants.api";
 import useRestaurantsStore from "@portal/store/restaurants.store";
 export default function Home() {

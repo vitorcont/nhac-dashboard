@@ -35,6 +35,7 @@ const userService = {
         data: {
           ...body,
           password: undefined,
+          email: undefined,
         },
       });
 

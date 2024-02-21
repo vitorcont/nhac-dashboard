@@ -24,8 +24,9 @@ const restaurantsService = {
       throw error;
     }
   },
-  get: async (id: string) => {
+  get: async (id: string, userId?: string) => {
     try {
+      console.log(id, userId, "id, userId");
       const restaurant = await prismaService.restaurants.findFirst({
         where: {
           id,
@@ -33,6 +34,14 @@ const restaurantsService = {
         include: {
           address: true,
           items: true,
+          ...(userId && {
+            userFavorites: {
+              where: {
+                userId,
+                deletedAt: null,
+              },
+            },
+          }),
         },
       });
 
@@ -82,7 +91,7 @@ const restaurantsService = {
       throw error;
     }
   },
-  list: (search: string | null) => {
+  list: (search?: string | null, userId?: string) => {
     try {
       const restaurant = prismaService.restaurants.findMany({
         orderBy: {
@@ -96,6 +105,39 @@ const restaurantsService = {
             },
           },
         }),
+        ...(userId && {
+          include: {
+            userFavorites: {
+              where: {
+                userId,
+              },
+            },
+          },
+        }),
+      });
+
+      return restaurant;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  },
+  listFavorites: (userId: string) => {
+    try {
+      const restaurant = prismaService.restaurants.findMany({
+        where: {
+          userFavorites: {
+            some: {
+              userId,
+            },
+          },
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+        include: {
+          userFavorites: true,
+        },
       });
 
       return restaurant;

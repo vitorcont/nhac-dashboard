@@ -6,9 +6,12 @@ import restaurantsService from "./restaurants.service";
 
 export async function GET(request: Request) {
   try {
+    const userRaw = request.headers.get("user");
+    const user = JSON.parse(userRaw ?? "{}");
+
     const url = new URL(request.url);
     const searchedValue = url.searchParams.get("search");
-    const list = await restaurantsService.list(searchedValue);
+    const list = await restaurantsService.list(searchedValue, user?.id);
 
     return NextResponse.json(list);
   } catch (error) {

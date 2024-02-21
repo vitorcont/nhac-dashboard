@@ -1,6 +1,6 @@
 import { Grid, Skeleton } from "@mui/material";
 
-import { RestaurantCard } from "@portal/components/elements/RestaurantCard/RestaurantCard";
+import { RestaurantCard } from "@portal/components";
 
 interface RestaurantsHorizontalProps {
   data: IRestaurants.IRestaurant[];

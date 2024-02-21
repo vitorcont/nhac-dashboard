@@ -4,7 +4,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-import { DefaultAutocomplete } from "@portal/components/elements/DefaultAutocomplete/DefaultAutocomplete";
+import { DefaultAutocomplete } from "@portal/components";
 import { restaurantsApi } from "@portal/service/restaurants.api";
 import useRestaurantsStore from "@portal/store/restaurants.store";
 

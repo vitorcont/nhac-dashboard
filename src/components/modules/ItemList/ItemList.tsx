@@ -1,6 +1,6 @@
 import { Grid, Skeleton, Theme, useMediaQuery } from "@mui/material";
 
-import { ItemCard } from "@portal/components/elements/ItemCard/ItemCard";
+import { ItemCard } from "@portal/components";
 
 interface ItemListProps {
   data: IItems.IItem[];

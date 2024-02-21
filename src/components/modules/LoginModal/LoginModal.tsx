@@ -1,11 +1,13 @@
 import { useFormik } from "formik";
 import { useContext, useState } from "react";
 
-import { Button } from "@portal/components/elements/Button/Button";
-import { DefaultSnackbar } from "@portal/components/elements/DefaultSnackbar/DefaultSnackbar";
-import { ModalWrapperProps } from "@portal/components/elements/ModalWrapper/ModalWrapper";
-import { ResponsiveModal } from "@portal/components/elements/ResponsiveModal/ResponsiveModal";
-import { UnderlinedInput } from "@portal/components/elements/UnderlinedInput/UnderlinedInput";
+import {
+  ModalWrapperProps,
+  ResponsiveModal,
+  UnderlinedInput,
+  DefaultSnackbar,
+  Button,
+} from "@portal/components";
 import { AuthActionEnum, AuthContext } from "@portal/context/auth-provider";
 import { authApi } from "@portal/service/auth.api";
 import { userApi } from "@portal/service/user.api";

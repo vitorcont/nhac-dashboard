@@ -1,15 +1,19 @@
 "use client";
 /* eslint-disable @next/next/no-img-element */
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import RoomIcon from "@mui/icons-material/Room";
-import { Grid, Skeleton } from "@mui/material";
-import { useEffect, useState } from "react";
+import { Grid, IconButton, Skeleton } from "@mui/material";
+import { useContext, useEffect, useState } from "react";
 
-import { ItemList } from "@portal/components/modules/ItemList/ItemList";
-import { RestaurantsHorizontal } from "@portal/components/modules/RestaurantsList/RestaurantsHorizontal";
+import { ItemList, RestaurantsHorizontal } from "@portal/components";
+import { AuthContext } from "@portal/context/auth-provider";
+import { favoriteApi } from "@portal/service/favorite.api";
 import { restaurantsApi } from "@portal/service/restaurants.api";
 import useRestaurantsStore from "@portal/store/restaurants.store";
 import { formatAddress, formatPhone } from "@portal/utils/formatters";
+
 export default function RestaurantDetails({ params }: { params: { id: string } }) {
   const {
     restaurantList,
@@ -18,9 +22,13 @@ export default function RestaurantDetails({ params }: { params: { id: string } }
     setRestaurantList,
     setRestaurantFilteredList,
   } = useRestaurantsStore((state) => state);
+  const {
+    state: { user },
+  } = useContext(AuthContext);
   const [loadingDetails, setLoadingDetails] = useState(true);
   const [loadingList, setLoadingList] = useState(false);
 
+  const favoriteDetails = restaurantDetails?.userFavorites;
   const info = {
     ...(restaurantDetails &&
       restaurantDetails.address && {
@@ -60,6 +68,24 @@ export default function RestaurantDetails({ params }: { params: { id: string } }
     }
   };
 
+  const handleFavorite = async () => {
+    try {
+      console.log(favoriteDetails, restaurantDetails, "favoriteDetails");
+      if (favoriteDetails && favoriteDetails?.length > 0) {
+        await favoriteApi.delete(favoriteDetails[0].id);
+      } else {
+        await favoriteApi.add(restaurantDetails?.id ?? "");
+      }
+      const data = await restaurantsApi.getById(restaurantDetails?.id ?? "");
+      setRestaurantDetails(data);
+      setLoadingDetails(false);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoadingDetails(false);
+    }
+  };
+
   useEffect(() => {
     findDetails();
     if (!restaurantList.length) {
@@ -94,7 +120,18 @@ export default function RestaurantDetails({ params }: { params: { id: string } }
           <>
             <div className="restaurant-details__details">
               <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                <h1 className="text-3xl semi-bold text-secundary">{restaurantDetails?.name}</h1>
+                <div className="flex flex-row items-center">
+                  <h1 className="text-3xl semi-bold text-secundary">{restaurantDetails?.name}</h1>
+                  {user && (
+                    <IconButton className="ml-2" onClick={() => handleFavorite()}>
+                      {favoriteDetails && favoriteDetails?.length > 0 ? (
+                        <FavoriteIcon color="primary" />
+                      ) : (
+                        <FavoriteBorderIcon color="primary" />
+                      )}
+                    </IconButton>
+                  )}
+                </div>
                 <p className="mt-2">{restaurantDetails?.description}</p>
               </Grid>
               <Grid

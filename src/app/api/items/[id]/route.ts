@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
 import { HttpError } from "@portal/utils/http";
+
 import itemsService from "../items.service";
 
 export async function GET(request: Request, { params }: { params: { id: string } }) {

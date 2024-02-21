@@ -38,4 +38,14 @@ export interface IRestaurant extends Omit<ICreateRestaurants, ["address", "items
   deletedAt?: string | Date | null;
   address: IAddress;
   items: IItems.IItem[];
+  userFavorites?: IUserFavorite[];
+}
+
+export interface IUserFavorite {
+  userId: string;
+  restaurantId: string;
+  id: string;
+  createdAt?: string | Date | null;
+  updatedAt?: string | Date | null;
+  deletedAt?: string | Date | null;
 }

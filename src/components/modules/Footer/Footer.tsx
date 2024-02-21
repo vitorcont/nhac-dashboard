@@ -3,11 +3,10 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import HomeIcon from "@mui/icons-material/Home";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { IconButton } from "@mui/material";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
 
-import { LabelButton } from "@portal/components/elements/LabelButton/LabelButton";
+import { LabelButton } from "@portal/components";
 import { AuthActionEnum, AuthContext } from "@portal/context/auth-provider";
 interface FooterProps {
   setOpenLogin: React.Dispatch<React.SetStateAction<boolean>>;

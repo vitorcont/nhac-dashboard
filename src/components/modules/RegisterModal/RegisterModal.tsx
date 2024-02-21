@@ -109,36 +109,35 @@ export const RegisterModal = (props: ModalWrapperProps) => {
             !loading ? formik.handleSubmit(e) : () => {};
           }}
           className=" mx-6 flex-col items-center">
-          <UnderlinedInput
-            label="Nome completo"
-            className="mt-6"
-            onChange={formik.handleChange}
-            id="name"
-            error={!!formik.errors.name}
-            helperText={formik.errors.name}
-          />
-          <UnderlinedInput
-            label="e-mail"
-            className="mt-6"
-            onChange={formik.handleChange}
-            id="email"
-            error={!!formik.errors.email}
-            helperText={formik.errors.email}
-          />
-          <UnderlinedInput
-            label="senha"
-            className="mt-5"
-            onChange={formik.handleChange}
-            password
-            id="password"
-          />
-          <UnderlinedInput
-            label="confirmar senha"
-            className="mt-5"
-            onChange={formik.handleChange}
-            password
-            id="confirmPassword"
-          />
+          <div className="mt-6 w-full">
+            <UnderlinedInput
+              label="Nome completo"
+              onChange={formik.handleChange}
+              id="name"
+              error={!!formik.errors.name}
+              helperText={formik.errors.name}
+            />
+          </div>
+          <div className="mt-3 w-full">
+            <UnderlinedInput
+              label="e-mail"
+              onChange={formik.handleChange}
+              id="email"
+              error={!!formik.errors.email}
+              helperText={formik.errors.email}
+            />
+          </div>
+          <div className="mt-3 w-full">
+            <UnderlinedInput label="senha" onChange={formik.handleChange} password id="password" />
+          </div>
+          <div className="mt-3 w-full">
+            <UnderlinedInput
+              label="confirmar senha"
+              onChange={formik.handleChange}
+              password
+              id="confirmPassword"
+            />
+          </div>
           <div className="mt-2 self-start">
             {passwordErrors.map((error, index) => (
               <li key={index} className="text-sm primary">

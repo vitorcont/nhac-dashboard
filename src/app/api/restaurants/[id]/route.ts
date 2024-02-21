@@ -8,7 +8,6 @@ export async function GET(request: Request, { params }: { params: { id: string }
   try {
     const userRaw = request.headers.get("user");
     const user = JSON.parse(userRaw ?? "{}");
-    console.log(user, "user");
 
     const restaurant = await restaurantsService.get(params.id, user?.id);
     if (!restaurant) {

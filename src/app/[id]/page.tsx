@@ -70,7 +70,6 @@ export default function RestaurantDetails({ params }: { params: { id: string } }
 
   const handleFavorite = async () => {
     try {
-      console.log(favoriteDetails, restaurantDetails, "favoriteDetails");
       if (favoriteDetails && favoriteDetails?.length > 0) {
         await favoriteApi.delete(favoriteDetails[0].id);
       } else {

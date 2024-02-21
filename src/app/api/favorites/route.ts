@@ -7,7 +7,6 @@ import favoritesService from "./favorites.service";
 export async function POST(request: Request) {
   try {
     const userRaw = request.headers.get("user");
-    console.log(userRaw, "userRaw");
     if (!userRaw) {
       throw new HttpError(400, "Bad Request");
     }

@@ -39,7 +39,7 @@ jobs:
       - name: Stop container
         run: docker compose down -v || true
       - name: Delete image
-        run: docker image rm codigo3-socket --force || true
+        run: docker image rm nhac-dashboard --force || true
       - name: Container rebuild
         run: docker compose build --no-cache
       - name: Start container

@@ -15,11 +15,9 @@ export const isRouteFree = (request: NextRequest) => {
   const route = request.url.split("/api")[1];
 
   const mainProtected = protectedRoutes.find((item) => item.regex.test(route));
-  console.log(mainProtected, "mainProtected");
   if (!mainProtected) return true;
 
   const method = request.method;
   const subProtected = mainProtected.methods.find((m: string) => m.includes(method));
-  console.log(subProtected, "subProtected");
   return !subProtected;
 };

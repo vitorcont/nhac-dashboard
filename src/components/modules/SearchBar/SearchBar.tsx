@@ -22,7 +22,6 @@ export const SearchBar = () => {
     }
 
     if (!searchedText) {
-      console.log("reset");
       setRestaurantFilteredList(restaurantList);
       return;
     }

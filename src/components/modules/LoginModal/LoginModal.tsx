@@ -87,23 +87,25 @@ export const LoginModal = (props: LoginModalProps) => {
             !loading ? formik.handleSubmit(e) : () => {};
           }}
           className="py-4 mx-8 flex-col items-center">
-          <UnderlinedInput
-            label="e-mail"
-            className="mt-6"
-            onChange={formik.handleChange}
-            id="email"
-            error={!!formik.errors.email}
-            helperText={formik.errors.email}
-          />
-          <UnderlinedInput
-            label="senha"
-            className="mt-5"
-            onChange={formik.handleChange}
-            password
-            id="password"
-            error={!!formik.errors.password}
-            helperText={formik.errors.password}
-          />
+          <div className="mt-6 w-full">
+            <UnderlinedInput
+              label="e-mail"
+              onChange={formik.handleChange}
+              id="email"
+              error={!!formik.errors.email}
+              helperText={formik.errors.email}
+            />
+          </div>
+          <div className="mt-3 w-full">
+            <UnderlinedInput
+              label="senha"
+              onChange={formik.handleChange}
+              password
+              id="password"
+              error={!!formik.errors.password}
+              helperText={formik.errors.password}
+            />
+          </div>
           <div className="mt-12">
             <Button
               label="Entrar"

@@ -26,7 +26,6 @@ const restaurantsService = {
   },
   get: async (id: string, userId?: string) => {
     try {
-      console.log(id, userId, "id, userId");
       const restaurant = await prismaService.restaurants.findFirst({
         where: {
           id,

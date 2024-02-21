@@ -9,7 +9,7 @@ export interface RestaurantCardProps {
 }
 
 export const RestaurantCard = (props: IRestaurants.IRestaurant) => (
-  <Link href={`/${props.id}`}>
+  <Link href={`/details/${props.id}`}>
     <div className="restaurant-card">
       <div className="relative flex">
         <div className="restaurant-card__icon">

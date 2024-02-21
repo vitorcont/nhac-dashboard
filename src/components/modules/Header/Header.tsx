@@ -6,6 +6,7 @@ import { IconButton, Popover, Theme, useMediaQuery } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 import { LabelButton, SearchBar } from "@portal/components";
 import { AuthActionEnum, AuthContext } from "@portal/context/auth-provider";
@@ -19,6 +20,7 @@ export const Header = (props: HeaderProps) => {
     state: { user },
     dispatch,
   } = useContext(AuthContext);
+  const { t } = useTranslation();
   const router = useRouter();
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
   const downMd = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
@@ -52,7 +54,7 @@ export const Header = (props: HeaderProps) => {
               <nav>
                 <LabelButton
                   className="primary bold text-lg"
-                  value="Entrar"
+                  value={t("UTILS.BUTTONS.LOGIN")}
                   onClick={() => props.setOpenLogin(true)}></LabelButton>
               </nav>
             ) : (
@@ -82,11 +84,11 @@ export const Header = (props: HeaderProps) => {
             horizontal: "left",
           }}>
           <div className="p-3">
-            <LabelButton color="secondary" value="Meu Perfil" />
+            <LabelButton color="secondary" value={t("UTILS.TABBAR.MY_PROFILE")} />
             <hr className="my-2" />
             <LabelButton
               className="bold"
-              value="Sair"
+              value={t("UTILS.BUTTONS.EXIT")}
               onClick={() => {
                 dispatch({ type: AuthActionEnum.LOGOUT });
                 handleClose();

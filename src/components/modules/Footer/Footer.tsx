@@ -5,6 +5,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import { IconButton } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
+import { useTranslation } from "react-i18next";
 
 import { LabelButton } from "@portal/components";
 import { AuthActionEnum, AuthContext } from "@portal/context/auth-provider";
@@ -17,6 +18,7 @@ export const Footer = (props: FooterProps) => {
     state: { user },
     dispatch,
   } = useContext(AuthContext);
+  const { t } = useTranslation();
   const router = useRouter();
 
   return (
@@ -24,26 +26,28 @@ export const Footer = (props: FooterProps) => {
       <nav>
         <IconButton onClick={() => router.push("/")} className="flex  flex-col items-center">
           <HomeIcon color="secondary" fontSize="medium" />
-          <p>Lista</p>
+          <p>{t("UTILS.TABBAR.HOME")}</p>
         </IconButton>
       </nav>
       {!user ? (
         <LabelButton
           className="primary bold text-lg"
-          value="Entrar"
+          value={t("UTILS.BUTTONS.LOGIN")}
           onClick={() => props.setOpenLogin(true)}></LabelButton>
       ) : (
         <>
           <nav>
-            <IconButton onClick={() => router.push("/")} className="flex  flex-col items-center">
+            <IconButton
+              onClick={() => router.push("/favorites")}
+              className="flex  flex-col items-center">
               <FavoriteBorderIcon color="secondary" fontSize="medium" />
-              <p>Favoritos</p>
+              <p>{t("UTILS.TABBAR.FAVORITES")}</p>
             </IconButton>
           </nav>
           <nav>
             <IconButton onClick={() => router.push("/")} className="flex  flex-col items-center">
               <AccountCircleIcon color="secondary" fontSize="medium" />
-              <p>Perfi</p>
+              <p>{t("UTILS.TABBAR.PROFILE")}</p>
             </IconButton>
           </nav>
           <nav>
@@ -53,7 +57,7 @@ export const Footer = (props: FooterProps) => {
               }}
               className="flex  flex-col items-center">
               <LogoutIcon color="secondary" fontSize="medium" />
-              <p>Sair</p>
+              <p>{t("UTILS.BUTTONS.EXIT")}</p>
             </IconButton>
           </nav>
         </>

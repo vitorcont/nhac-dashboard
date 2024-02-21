@@ -1,5 +1,6 @@
 import { useFormik } from "formik";
 import { useContext, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import {
   Button,
@@ -20,6 +21,7 @@ export const RegisterModal = (props: ModalWrapperProps) => {
     password: "",
     confirmPassword: "",
   };
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [errorSnack, setErrorSnack] = useState(false);
   const [successSnack, setSuccessSnack] = useState(false);
@@ -29,32 +31,32 @@ export const RegisterModal = (props: ModalWrapperProps) => {
     validate: (values) => {
       const errors: any = {};
       if (!values.name) {
-        errors.name = "Campo obrigatório";
+        errors.name = t("UTILS.INPUTS.REQUIRED_FIELD");
       }
 
       if (!values.email) {
-        errors.email = "Campo obrigatório";
+        errors.email = t("UTILS.INPUTS.REQUIRED_FIELD");
       } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-        errors.email = "E-mail inválido";
+        errors.email = t("UTILS.INPUTS.EMAIL.ERROR");
       }
 
       if (values.password.length < 5) {
-        errors.passwordSize = "A senha deve conter no mínimo 5 caracteres";
+        errors.passwordSize = t("UTILS.INPUTS.PASSWORD.ERROR_LENGTH");
       }
       if (!/[A-Z]/.test(values.password)) {
-        errors.passwordUppercase = "A senha deve conter pelo menos uma letra maiúscula";
+        errors.passwordUppercase = t("UTILS.INPUTS.PASSWORD.ERROR_UPPERCASE");
       }
       if (!/[a-z]/.test(values.password)) {
-        errors.passwordLowercase = "A senha deve conter pelo menos uma letra minuscula";
+        errors.passwordLowercase = t("UTILS.INPUTS.PASSWORD.ERROR_LOWERCASE");
       }
       if (!/[0-9]/.test(values.password)) {
-        errors.passwordNumber = "A senha deve conter pelo menos um número";
+        errors.passwordNumber = t("UTILS.INPUTS.PASSWORD.ERROR_NUMBER");
       }
       if (!/[!@#$%^&*(),.?":{}|<>]/.test(values.password)) {
-        errors.passwordSpecial = "A senha deve conter pelo menos um caractere especial";
+        errors.passwordSpecial = t("UTILS.INPUTS.PASSWORD.ERROR_SPECIAL");
       }
       if (values.password !== values.confirmPassword) {
-        errors.passwordMatch = "As senhas não conferem";
+        errors.passwordMatch = t("UTILS.INPUTS.PASSWORD.ERROR_MATCH");
       }
 
       return errors;
@@ -92,17 +94,17 @@ export const RegisterModal = (props: ModalWrapperProps) => {
         open={errorSnack}
         setOpen={setErrorSnack}
         variant="error"
-        description="Verifique suas credenciais e tente novamente..."
+        description={t("UTILS.MODAL.LOGIN.ERROR")}
       />
       <DefaultSnackbar
         open={successSnack}
         setOpen={setSuccessSnack}
         variant="success"
-        description="Usuário cadastrado com sucesso!"
+        description={t("UTILS.MODAL.REGISTER.SUCCESS")}
       />
       <ResponsiveModal
-        title="Cadastro"
-        description="Preencha os campos para se cadastrar"
+        title={t("UTILS.MODAL.REGISTER.TITLE")}
+        description={t("UTILS.MODAL.REGISTER.DESCRIPTION")}
         {...props}>
         <form
           onSubmit={(e) => {
@@ -111,7 +113,7 @@ export const RegisterModal = (props: ModalWrapperProps) => {
           className=" mx-6 flex-col items-center">
           <div className="mt-6 w-full">
             <UnderlinedInput
-              label="Nome completo"
+              label={t("UTILS.INPUTS.NAME.LABEL")}
               onChange={formik.handleChange}
               id="name"
               error={!!formik.errors.name}
@@ -120,7 +122,7 @@ export const RegisterModal = (props: ModalWrapperProps) => {
           </div>
           <div className="mt-3 w-full">
             <UnderlinedInput
-              label="e-mail"
+              label={t("UTILS.INPUTS.EMAIL.LABEL")}
               onChange={formik.handleChange}
               id="email"
               error={!!formik.errors.email}
@@ -128,11 +130,16 @@ export const RegisterModal = (props: ModalWrapperProps) => {
             />
           </div>
           <div className="mt-3 w-full">
-            <UnderlinedInput label="senha" onChange={formik.handleChange} password id="password" />
+            <UnderlinedInput
+              label={t("UTILS.INPUTS.PASSWORD.LABEL")}
+              onChange={formik.handleChange}
+              password
+              id="password"
+            />
           </div>
           <div className="mt-3 w-full">
             <UnderlinedInput
-              label="confirmar senha"
+              label={t("UTILS.INPUTS.CONFIRM_PASSWORD.LABEL")}
               onChange={formik.handleChange}
               password
               id="confirmPassword"
@@ -148,7 +155,7 @@ export const RegisterModal = (props: ModalWrapperProps) => {
 
           <div className="mt-6">
             <Button
-              label="Cadastrar"
+              label={t("UTILS.BUTTONS.REGISTER")}
               type="submit"
               disabled={Object.keys(formik.errors).length > 0}
               loading={loading}

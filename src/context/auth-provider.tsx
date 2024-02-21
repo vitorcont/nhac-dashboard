@@ -3,7 +3,12 @@
 import React, { createContext, useEffect, useReducer } from "react";
 
 import { userApi } from "@portal/service/user.api";
-import { LocalStorageEnum, getLocalKey, setLocalKey } from "@portal/utils/local-storage";
+import {
+  LocalStorageEnum,
+  clearLocalStorage,
+  getLocalKey,
+  setLocalKey,
+} from "@portal/utils/local-storage";
 
 const initialState: AuthState = {
   user: null,
@@ -33,7 +38,8 @@ const authReducer = (state: AuthState, action: AuthAction): AuthState => {
         user: action.payload || null,
       };
     case AuthActionEnum.LOGOUT:
-      setLocalKey(LocalStorageEnum.ACCESS_TOKEN, "");
+      clearLocalStorage();
+
       return {
         ...state,
         user: null,

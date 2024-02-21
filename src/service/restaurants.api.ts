@@ -7,6 +7,12 @@ export const restaurantsApi = {
 
     return data;
   },
+  listFavorites: async () => {
+    const intance = getApiInstance();
+    const { data } = await intance.get("/api/restaurants/favorites");
+
+    return data;
+  },
   getById: async (id: string) => {
     const intance = getApiInstance();
     const { data } = await intance.get(`/api/restaurants/${id}`);

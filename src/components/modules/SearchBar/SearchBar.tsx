@@ -3,6 +3,7 @@
 import SearchIcon from "@mui/icons-material/Search";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { DefaultAutocomplete } from "@portal/components";
 import { restaurantsApi } from "@portal/service/restaurants.api";
@@ -12,6 +13,7 @@ export const SearchBar = () => {
   const { restaurantFilteredList, restaurantList, setRestaurantFilteredList } = useRestaurantsStore(
     (state) => state
   );
+  const { t } = useTranslation();
   const router = useRouter();
 
   const [typingTimeout, setTypingTimeout] = useState<NodeJS.Timeout | null>(null);
@@ -50,7 +52,7 @@ export const SearchBar = () => {
       inputprops={{
         startAdornment: <SearchIcon className="ml-2" fontSize="medium" color="primary" />,
       }}
-      noOptionsText="Nenhum restaurante encontrado..."
+      noOptionsText={t("UTILS.TITLES.NO_OPTIONS")}
       renderOption={(props, option: IRestaurants.IRestaurant) => (
         <div {...(props as any)}>
           <img className="item-icon" src={option.logoUrl} />
@@ -60,9 +62,9 @@ export const SearchBar = () => {
       size="small"
       onChange={(event, value) => {
         if (!value) return;
-        router.push(`/${value.id}`);
+        router.push(`/details/${value.id}`);
       }}
-      placeholder="Buscar restaurantes..."
+      placeholder={t("UTILS.BUTTONS.SEARCH_RESTAURANTS")}
       onChangeText={(value) => {
         onChange(value);
       }}

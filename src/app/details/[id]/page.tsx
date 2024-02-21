@@ -5,7 +5,9 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import RoomIcon from "@mui/icons-material/Room";
 import { Grid, IconButton, Skeleton } from "@mui/material";
+import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { ItemList, RestaurantsHorizontal } from "@portal/components";
 import { AuthContext } from "@portal/context/auth-provider";
@@ -25,8 +27,10 @@ export default function RestaurantDetails({ params }: { params: { id: string } }
   const {
     state: { user },
   } = useContext(AuthContext);
+  const { t } = useTranslation();
   const [loadingDetails, setLoadingDetails] = useState(true);
   const [loadingList, setLoadingList] = useState(false);
+  const router = useRouter();
 
   const favoriteDetails = restaurantDetails?.userFavorites;
   const info = {
@@ -54,6 +58,7 @@ export default function RestaurantDetails({ params }: { params: { id: string } }
       setLoadingDetails(false);
     } catch (err) {
       console.error(err);
+      router.push("/not-found");
     }
   };
 
@@ -166,8 +171,8 @@ export default function RestaurantDetails({ params }: { params: { id: string } }
         )}
       </section>
       <ItemList
-        className="overflow-hidden "
-        title="Cardápio"
+        className="overflow-hidden"
+        title={t("UTILS.TITLES.MENU")}
         loading={loadingDetails}
         data={restaurantDetails?.items ?? []}
       />

@@ -15,7 +15,7 @@
 }
 
 .filled-button {
-  background: $primary 0% 0% no-repeat padding-box;
+  background: $primary 0% 0% no-repeat padding-box !important;
   color: white;
   border: 0px !important;
   &__disabled {

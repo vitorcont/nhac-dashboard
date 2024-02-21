@@ -1,6 +1,7 @@
 "use client";
 import { ReactNode, useContext } from "react";
 
+import NotAllowedPage from "@portal/app/not-allowed";
 import { AuthContext } from "@portal/context/auth-provider";
 
 const AuthGuard = ({ children }: { children: ReactNode }) => {
@@ -10,7 +11,7 @@ const AuthGuard = ({ children }: { children: ReactNode }) => {
     return children;
   }
 
-  return <></>;
+  return <NotAllowedPage />;
 };
 
 export default AuthGuard;

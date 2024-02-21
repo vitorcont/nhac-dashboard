@@ -2,12 +2,20 @@ import { NextRequest } from "next/server";
 
 export const protectedRoutes = [
   {
-    regex: /\/user/,
+    regex: /\/user\/+\w/,
     methods: ["POST", "PUT", "DELETE", "GET"],
+  },
+  {
+    regex: /\/user/,
+    methods: ["PUT", "DELETE", "GET"],
   },
   {
     regex: /\/favorite/,
     methods: ["POST", "DELETE"],
+  },
+  {
+    regex: /restaurant\/favorite/,
+    methods: ["GET"],
   },
 ];
 

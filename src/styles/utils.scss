@@ -42,12 +42,25 @@ main {
   padding-top: 2rem;
 }
 
+.info-container {
+  margin-top: 5rem;
+  width: 30vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  @media screen and (max-width: 768px) {
+    width: 60vw;
+  }
+}
+
 .MuiSkeleton-rounded {
   border-radius: 12px !important;
 }
 
 .bottom-pd {
-  @media screen and (max-width: 736px) {
+  @media screen and (max-width: 900px) {
     padding-bottom: 6rem;
   }
 }

@@ -11,6 +11,8 @@ export async function GET(request: Request) {
 
     const url = new URL(request.url);
     const searchedValue = url.searchParams.get("search");
+    const getFavorites = url.searchParams.get("getFavorites");
+
     const list = await restaurantsService.list(searchedValue, user?.id);
 
     return NextResponse.json(list);

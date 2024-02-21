@@ -2,21 +2,23 @@ import Axios, { AxiosError, AxiosResponse } from "axios";
 
 import { LocalStorageEnum, getLocalKey } from "./local-storage";
 
-const axiosInstance = Axios.create({
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
-
-axiosInstance.interceptors.response.use(
-  (response: AxiosResponse) => response,
-  async (error: AxiosError) => Promise.reject(error)
-);
-
 export const getApiInstance = (token?: string) => {
-  const accessToken = token || getLocalKey(LocalStorageEnum.ACCESS_TOKEN);
+  const local = getLocalKey(LocalStorageEnum.ACCESS_TOKEN);
+  const accessToken = token ?? local;
+
+  const axiosInstance = Axios.create({
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  axiosInstance.interceptors.response.use(
+    (response: AxiosResponse) => response,
+    async (error: AxiosError) => Promise.reject(error)
+  );
+
   axiosInstance.interceptors.request.use((request) => {
-    if (token) {
+    if (accessToken) {
       request.headers.Authorization = `Bearer ${accessToken}`;
     }
 

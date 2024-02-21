@@ -3,10 +3,12 @@
 import { Grid } from "@mui/material";
 import { $Enums } from "@prisma/client";
 import { useEffect, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { Banner, RestaurantsHorizontal, RestaurantsVertical } from "@portal/components";
 import { restaurantsApi } from "@portal/service/restaurants.api";
 import useRestaurantsStore from "@portal/store/restaurants.store";
+
 export default function Home() {
   const { restaurantList, setRestaurantFilteredList, setRestaurantList } = useRestaurantsStore(
     (state) => state
@@ -20,6 +22,7 @@ export default function Home() {
     [restaurantList]
   );
   const [loading, setLoading] = useState(false);
+  const { t } = useTranslation();
 
   const fetchRestaurants = async () => {
     try {
@@ -44,7 +47,7 @@ export default function Home() {
         loading={loading}
         className="mt-14"
         data={newRestaurants}
-        title="Novidades!"
+        title={t("UTILS.TITLES.NEWS")}
       />
       <div className="w-full flex flex-row justify-between pd-sides">
         <Grid item xs={5.9}>
@@ -58,7 +61,7 @@ export default function Home() {
         <RestaurantsVertical
           loading={loading}
           data={otherRestaurants}
-          title="Outros restaurantes"
+          title={t("UTILS.TITLES.ANOTHER_RESTAURANTS")}
         />
       </div>
     </Grid>

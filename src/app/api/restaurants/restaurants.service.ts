@@ -128,14 +128,12 @@ const restaurantsService = {
           userFavorites: {
             some: {
               userId,
+              deletedAt: null,
             },
           },
         },
         orderBy: {
           createdAt: "desc",
-        },
-        include: {
-          userFavorites: true,
         },
       });
 

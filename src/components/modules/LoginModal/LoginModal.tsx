@@ -1,5 +1,6 @@
 import { useFormik } from "formik";
 import { useContext, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import {
   ModalWrapperProps,
@@ -11,7 +12,7 @@ import {
 import { AuthActionEnum, AuthContext } from "@portal/context/auth-provider";
 import { authApi } from "@portal/service/auth.api";
 import { userApi } from "@portal/service/user.api";
-import { LocalStorageEnum, setLocalKey } from "@portal/utils/local-storage";
+import { LocalStorageEnum, clearLocalStorage, setLocalKey } from "@portal/utils/local-storage";
 
 interface LoginModalProps extends ModalWrapperProps {
   onRegister: () => void;
@@ -22,6 +23,7 @@ export const LoginModal = (props: LoginModalProps) => {
     email: "",
     password: "",
   };
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [errorSnack, setErrorSnack] = useState(false);
 
@@ -30,13 +32,13 @@ export const LoginModal = (props: LoginModalProps) => {
     validate: (values) => {
       const errors: any = {};
       if (!values.email) {
-        errors.email = "Campo obrigatório";
+        errors.email = t("UTILS.INPUTS.REQUIRED_FIELD");
       } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-        errors.email = "E-mail inválido";
+        errors.email = t("UTILS.INPUTS.EMAIL.ERROR");
       }
 
       if (values.password.length < 5) {
-        errors.password = "Campo obrigatório";
+        errors.password = t("UTILS.INPUTS.REQUIRED_FIELD");
       }
 
       return errors;
@@ -51,9 +53,13 @@ export const LoginModal = (props: LoginModalProps) => {
     try {
       setLoading(true);
       const response = await authApi.login(values);
+      clearLocalStorage();
       const userDetais = await userApi.getMe(response.accessToken);
       setLocalKey(LocalStorageEnum.ACCESS_TOKEN, response.accessToken);
-      dispatch({ type: AuthActionEnum.LOGIN, payload: userDetais });
+      dispatch({
+        type: AuthActionEnum.LOGIN,
+        payload: userDetais,
+      });
       props.setOpen(false);
     } catch (err) {
       setErrorSnack(true);
@@ -68,18 +74,16 @@ export const LoginModal = (props: LoginModalProps) => {
         open={errorSnack}
         setOpen={setErrorSnack}
         variant="error"
-        description="Verifique suas credenciais e tente novamente..."
+        description={t("UTILS.MODAL.LOGIN.ERROR")}
       />
       <ResponsiveModal {...props}>
-        <p className="bold text-lg primary text-center px-8 mt-6">
-          Fique por dentro das novidades e promoções de seus restaurantes favoritos
-        </p>
+        <p className="bold text-lg primary text-center px-8 mt-6">{t("UTILS.MODAL.LOGIN.TITLE")}</p>
         <div className="mt-4 self-center">
-          <Button label="Criar minha conta" onPress={() => props.onRegister()} />
+          <Button label={t("UTILS.BUTTONS.CREATE_NEW")} onPress={() => props.onRegister()} />
         </div>
         <div className="mt-12 flex-row items-center w-full justify-between">
           <hr className="w-2/12" />
-          <p className=" primary">Já tenho minha conta</p>
+          <p className=" primary">{t("UTILS.MODAL.LOGIN.RESGISTERED")}</p>
           <hr className="w-2/12" />
         </div>
         <form
@@ -89,7 +93,7 @@ export const LoginModal = (props: LoginModalProps) => {
           className="py-4 mx-8 flex-col items-center">
           <div className="mt-6 w-full">
             <UnderlinedInput
-              label="e-mail"
+              label={t("UTILS.INPUTS.EMAIL.LABEL")}
               onChange={formik.handleChange}
               id="email"
               error={!!formik.errors.email}
@@ -98,7 +102,7 @@ export const LoginModal = (props: LoginModalProps) => {
           </div>
           <div className="mt-3 w-full">
             <UnderlinedInput
-              label="senha"
+              label={t("UTILS.INPUTS.PASSWORD.LABEL")}
               onChange={formik.handleChange}
               password
               id="password"
@@ -108,7 +112,7 @@ export const LoginModal = (props: LoginModalProps) => {
           </div>
           <div className="mt-12">
             <Button
-              label="Entrar"
+              label={t("UTILS.BUTTONS.LOGIN")}
               type="submit"
               disabled={!!(formik.errors.email || formik.errors.password)}
               loading={loading}

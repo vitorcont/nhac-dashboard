@@ -15,6 +15,12 @@ jobs:
     runs-on: self-hosted
     name: Install deps and build
     needs: pull
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      ALGORITHM: ${{ secrets.ALGORITHM }}
+      VECTOR_INITIALIZER: ${{ secrets.VECTOR_INITIALIZER }}
+      SECRET_KEY_ENCRYPT: ${{ secrets.SECRET_KEY_ENCRYPT }}
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
     steps:
       - uses: actions/setup-node@v3
         with:

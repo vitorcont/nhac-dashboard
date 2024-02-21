@@ -13,4 +13,10 @@ export const userApi = {
 
     return data;
   },
+  register: async (data: IUser.ICreateUser) => {
+    const intance = getApiInstance();
+    const response = await intance.post(`/api/user`, data);
+
+    return response;
+  },
 };

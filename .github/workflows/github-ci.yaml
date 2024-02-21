@@ -1,0 +1,46 @@
+name: CI/CD Nhac Automation
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+jobs:
+  pull:
+    name: Pulling from repo
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v1
+  install_and_build:
+    runs-on: self-hosted
+    name: Install deps and build
+    needs: pull
+    steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16.14.0
+      - name: Install dependencies
+        run: yarn install
+      - name: Update prisma dependencies
+        run: npx prisma generate
+      - name: Build
+        run: yarn build
+  upload_container:
+    runs-on: self-hosted
+    name: Update Container
+    needs: install_and_build
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      ALGORITHM: ${{ secrets.ALGORITHM }}
+      VECTOR_INITIALIZER: ${{ secrets.VECTOR_INITIALIZER }}
+      SECRET_KEY_ENCRYPT: ${{ secrets.SECRET_KEY_ENCRYPT }}
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
+    steps:
+      - name: Stop container
+        run: docker compose down -v || true
+      - name: Delete image
+        run: docker image rm codigo3-socket --force || true
+      - name: Container rebuild
+        run: docker compose build --no-cache
+      - name: Start container
+        run: docker compose up -d --force-recreate --renew-anon-volumes

@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Grid, Skeleton } from "@mui/material";
 
 import { RestaurantCard } from "@portal/components/elements/RestaurantCard/RestaurantCard";
 
@@ -7,6 +7,7 @@ interface RestaurantsHorizontalProps {
   title: string;
   titleColor?: string;
   className?: string;
+  loading?: boolean;
 }
 
 export const RestaurantsHorizontal = (props: RestaurantsHorizontalProps) => (
@@ -19,13 +20,23 @@ export const RestaurantsHorizontal = (props: RestaurantsHorizontalProps) => (
       {props.title}
     </h2>
     <div className="flex-row overflow-y-hidden overflow-x-scroll pd-sides py-6">
-      {props.data.map((item, index) => (
-        <Grid marginLeft={3} key={index}>
-          <div className="w-72">
-            <RestaurantCard {...item} />
-          </div>
-        </Grid>
-      ))}
+      <>
+        {props.loading
+          ? Array.from({ length: 5 }).map((__, index) => (
+              <Grid marginLeft={3} key={index}>
+                <div className="w-72">
+                  <Skeleton variant="rounded" width={"100%"} height={200} />
+                </div>
+              </Grid>
+            ))
+          : props.data.map((item, index) => (
+              <Grid marginLeft={3} key={index}>
+                <div className="w-72">
+                  <RestaurantCard {...item} />
+                </div>
+              </Grid>
+            ))}
+      </>
     </div>
   </section>
 );

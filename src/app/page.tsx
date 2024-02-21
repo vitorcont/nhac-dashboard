@@ -1,8 +1,8 @@
 "use client";
 /* eslint-disable @next/next/no-img-element */
-import { Grid } from "@mui/material";
+import { Grid, Theme, useMediaQuery } from "@mui/material";
 import { $Enums } from "@prisma/client";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { Banner } from "@portal/components/elements/Banner/Banner";
 import { RestaurantsHorizontal } from "@portal/components/modules/RestaurantsList/RestaurantsHorizontal";
@@ -21,11 +21,15 @@ export default function Home() {
     () => restaurantList.filter((restaurant) => restaurant.category !== $Enums.Category.NEW),
     [restaurantList]
   );
+  const [loading, setLoading] = useState(false);
+
   const fetchRestaurants = async () => {
     try {
+      setLoading(true);
       const data = await restaurantsApi.list();
       setRestaurantList(data);
       setRestaurantFilteredList(data);
+      setLoading(false);
     } catch (err) {
       console.error(err);
     }
@@ -38,7 +42,12 @@ export default function Home() {
   return (
     <Grid container>
       <img src="/ic_background.svg" className="cover-icon" alt="logo" />
-      <RestaurantsHorizontal className="mt-14" data={newRestaurants} title="Novidades!" />
+      <RestaurantsHorizontal
+        loading={loading}
+        className="mt-14"
+        data={newRestaurants}
+        title="Novidades!"
+      />
       <div className="w-full flex flex-row justify-between pd-sides">
         <Grid item xs={5.9}>
           <Banner />
@@ -47,7 +56,13 @@ export default function Home() {
           <Banner />
         </Grid>
       </div>
-      <RestaurantsVertical data={otherRestaurants} title="Outros restaurantes" />
+      <div className={"bottom-pd w-full"}>
+        <RestaurantsVertical
+          loading={loading}
+          data={otherRestaurants}
+          title="Outros restaurantes"
+        />
+      </div>
     </Grid>
   );
 }

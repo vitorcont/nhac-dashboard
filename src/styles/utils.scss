@@ -42,6 +42,16 @@ main {
   padding-top: 2rem;
 }
 
+.MuiSkeleton-rounded {
+  border-radius: 12px !important;
+}
+
+.bottom-pd {
+  @media screen and (max-width: 736px) {
+    padding-bottom: 6rem;
+  }
+}
+
 .pd-sides {
   padding-left: 6rem;
   padding-right: 6rem;

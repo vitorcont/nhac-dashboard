@@ -52,7 +52,7 @@ export const decriptString = (data: string) => {
 
 export const encryptString = (data: string) => {
   try {
-    const algorithm = process.env.ALGORITHM;
+    const algorithm = process.env.ALGORITHM as string;
     const key = process.env.SECRET_KEY_ENCRYPT;
     const initVector = process.env.VECTOR_INITIALIZER;
 

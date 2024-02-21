@@ -11,22 +11,25 @@ import { authApi } from "@portal/service/auth.api";
 import { userApi } from "@portal/service/user.api";
 import { LocalStorageEnum, setLocalKey } from "@portal/utils/local-storage";
 
-interface LoginModalProps extends ModalWrapperProps {
-  onRegister: () => void;
-}
-
-export const LoginModal = (props: LoginModalProps) => {
+export const RegisterModal = (props: ModalWrapperProps) => {
   const initialValues = {
+    name: "",
     email: "",
     password: "",
+    confirmPassword: "",
   };
   const [loading, setLoading] = useState(false);
   const [errorSnack, setErrorSnack] = useState(false);
+  const [successSnack, setSuccessSnack] = useState(false);
 
   const formik = useFormik({
     initialValues,
     validate: (values) => {
       const errors: any = {};
+      if (!values.name) {
+        errors.name = "Campo obrigatório";
+      }
+
       if (!values.email) {
         errors.email = "Campo obrigatório";
       } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
@@ -34,7 +37,22 @@ export const LoginModal = (props: LoginModalProps) => {
       }
 
       if (values.password.length < 5) {
-        errors.password = "Campo obrigatório";
+        errors.passwordSize = "A senha deve conter no mínimo 5 caracteres";
+      }
+      if (!/[A-Z]/.test(values.password)) {
+        errors.passwordUppercase = "A senha deve conter pelo menos uma letra maiúscula";
+      }
+      if (!/[a-z]/.test(values.password)) {
+        errors.passwordLowercase = "A senha deve conter pelo menos uma letra minuscula";
+      }
+      if (!/[0-9]/.test(values.password)) {
+        errors.passwordNumber = "A senha deve conter pelo menos um número";
+      }
+      if (!/[!@#$%^&*(),.?":{}|<>]/.test(values.password)) {
+        errors.passwordSpecial = "A senha deve conter pelo menos um caractere especial";
+      }
+      if (values.password !== values.confirmPassword) {
+        errors.passwordMatch = "As senhas não conferem";
       }
 
       return errors;
@@ -48,10 +66,12 @@ export const LoginModal = (props: LoginModalProps) => {
   const handleSubmit = async (values: typeof initialValues) => {
     try {
       setLoading(true);
+      delete values.confirmPassword;
+      const userDetais = await userApi.register(values);
       const response = await authApi.login(values);
-      const userDetais = await userApi.getMe(response.accessToken);
       setLocalKey(LocalStorageEnum.ACCESS_TOKEN, response.accessToken);
       dispatch({ type: AuthActionEnum.LOGIN, payload: userDetais });
+      setSuccessSnack(true);
       props.setOpen(false);
     } catch (err) {
       setErrorSnack(true);
@@ -59,6 +79,10 @@ export const LoginModal = (props: LoginModalProps) => {
       setLoading(false);
     }
   };
+
+  const passwordErrors = Object.keys(formik.errors)
+    .filter((key) => key.includes("password"))
+    .map((key) => formik.errors[key as keyof typeof formik.errors]);
 
   return (
     <>
@@ -68,23 +92,29 @@ export const LoginModal = (props: LoginModalProps) => {
         variant="error"
         description="Verifique suas credenciais e tente novamente..."
       />
-      <ResponsiveModal {...props}>
-        <p className="bold text-lg primary text-center px-8 mt-6">
-          Fique por dentro das novidades e promoções de seus restaurantes favoritos
-        </p>
-        <div className="mt-4 self-center">
-          <Button label="Criar minha conta" onPress={() => props.onRegister()} />
-        </div>
-        <div className="mt-12 flex-row items-center w-full justify-between">
-          <hr className="w-2/12" />
-          <p className=" primary">Já tenho minha conta</p>
-          <hr className="w-2/12" />
-        </div>
+      <DefaultSnackbar
+        open={successSnack}
+        setOpen={setSuccessSnack}
+        variant="success"
+        description="Usuário cadastrado com sucesso!"
+      />
+      <ResponsiveModal
+        title="Cadastro"
+        description="Preencha os campos para se cadastrar"
+        {...props}>
         <form
           onSubmit={(e) => {
             !loading ? formik.handleSubmit(e) : () => {};
           }}
-          className="py-4 mx-8 flex-col items-center">
+          className=" mx-6 flex-col items-center">
+          <UnderlinedInput
+            label="Nome completo"
+            className="mt-6"
+            onChange={formik.handleChange}
+            id="name"
+            error={!!formik.errors.name}
+            helperText={formik.errors.name}
+          />
           <UnderlinedInput
             label="e-mail"
             className="mt-6"
@@ -99,14 +129,27 @@ export const LoginModal = (props: LoginModalProps) => {
             onChange={formik.handleChange}
             password
             id="password"
-            error={!!formik.errors.password}
-            helperText={formik.errors.password}
           />
-          <div className="mt-12">
+          <UnderlinedInput
+            label="confirmar senha"
+            className="mt-5"
+            onChange={formik.handleChange}
+            password
+            id="confirmPassword"
+          />
+          <div className="mt-2 self-start">
+            {passwordErrors.map((error, index) => (
+              <li key={index} className="text-sm primary">
+                {error}
+              </li>
+            ))}
+          </div>
+
+          <div className="mt-6">
             <Button
-              label="Entrar"
+              label="Cadastrar"
               type="submit"
-              disabled={!!(formik.errors.email || formik.errors.password)}
+              disabled={Object.keys(formik.errors).length > 0}
               loading={loading}
             />
           </div>

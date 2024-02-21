@@ -1,0 +1,10 @@
+{
+  "yaml.schemas": {
+    "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json": [
+      "docker-compose*.*.yml"
+    ],
+    "http://json.schemastore.org/github-workflow": [".github/workflows/*.{yml,yaml}"],
+    "kubernetes": ["*.yml", "*.yaml"],
+    "https://json.schemastore.org/github-action.json": "file:///home/vitorconti/Estudos/nhac/.github/workflows/github-ci.yaml"
+  }
+}

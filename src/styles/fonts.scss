@@ -83,8 +83,8 @@ li {
 }
 
 .bold {
-  font-family: $inter-bold;
-  font-weight: 700;
+  font-family: $inter-bold !important;
+  font-weight: 700 !important;
 }
 
 .semi-bold {

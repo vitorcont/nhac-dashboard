@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  nhac:
+    build: .
+    image: nhac-img
+    container_name: nhac-dashboard
+    restart: unless-stopped
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - ALGORITHM=${ALGORITHM}
+      - VECTOR_INITIALIZER=${VECTOR_INITIALIZER}
+      - SECRET_KEY_ENCRYPT=${SECRET_KEY_ENCRYPT}
+      - JWT_SECRET=${JWT_SECRET}
+    ports:
+      - "4004:3000"

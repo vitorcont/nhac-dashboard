@@ -83,7 +83,7 @@ export const LoginModal = (props: LoginModalProps) => {
         </div>
         <div className="mt-12 flex-row items-center w-full justify-between">
           <hr className="w-2/12" />
-          <p className=" primary">{t("UTILS.MODAL.LOGIN.RESGISTERED")}</p>
+          <p className=" primary">{t("UTILS.MODAL.LOGIN.REGISTERED")}</p>
           <hr className="w-2/12" />
         </div>
         <form

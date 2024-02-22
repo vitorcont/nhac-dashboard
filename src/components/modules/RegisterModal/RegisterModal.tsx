@@ -94,13 +94,13 @@ export const RegisterModal = (props: ModalWrapperProps) => {
         open={errorSnack}
         setOpen={setErrorSnack}
         variant="error"
-        description={t("UTILS.MODAL.LOGIN.ERROR")}
+        description={t("UTILS.MODAL.USER_MODAL.ERROR")}
       />
       <DefaultSnackbar
         open={successSnack}
         setOpen={setSuccessSnack}
         variant="success"
-        description={t("UTILS.MODAL.REGISTER.SUCCESS")}
+        description={t("UTILS.MODAL.USER_MODAL.SUCCESS")}
       />
       <ResponsiveModal
         title={t("UTILS.MODAL.REGISTER.TITLE")}

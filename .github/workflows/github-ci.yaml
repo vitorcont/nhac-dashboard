@@ -25,13 +25,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18.19.0
-      - name: Write envs to .env file
-        run: |
-          echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env
-          echo "ALGORITHM=${{ secrets.ALGORITHM }}" >> .env
-          echo "VECTOR_INITIALIZER=${{ secrets.VECTOR_INITIALIZER }}" >> .env
-          echo "SECRET_KEY_ENCRYPT=${{ secrets.SECRET_KEY_ENCRYPT }}" >> .env
-          echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
       - name: Install dependencies
         run: yarn install
       - name: Update prisma dependencies

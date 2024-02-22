@@ -46,7 +46,7 @@ const es = {
       LOGIN: {
         TITLE: "Mantente al día con las novedades y promociones de tus restaurantes favoritos",
         DESCRIPTION: "Explora las experiencias gastronómicas cerca de ti",
-        RESGISTERED: "Ya tengo una cuenta",
+        REGISTERED: "Ya tengo una cuenta",
         ERROR: "Verifica tus credenciales e intenta nuevamente...",
       },
       REGISTER: {

@@ -180,7 +180,7 @@ export default function RestaurantDetails({ params }: { params: { id: string } }
         <RestaurantsHorizontal
           loading={loadingList}
           data={restaurantList}
-          title={t("ANOTHER_RESTAURANTS")}
+          title={t("UTILS.TITLES.ANOTHER_RESTAURANTS")}
         />
       </section>
     </Grid>

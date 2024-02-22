@@ -7,14 +7,16 @@
   --viewport-width: 100vw;
   --viewport-height: 100vh;
   --ratio: calc(100vw / 100vh);
-  @media screen and (min-width: 1436px) {
-    max-height: 26rem;
-    // margin-top: math.div(100vw, 1px);
+  @media screen and (min-width: 1700px) {
+    margin-top: -4rem;
   }
-  // @media screen and (min-width: 2000px) {
-  //   margin-top: -16rem;
-  // }
-  // @media screen and (min-width: 2000px) {
-  //   max-height: 36rem;
-  // }
+  @media screen and (min-width: 2000px) {
+    margin-top: -8rem;
+  }
+  @media screen and (min-width: 2300px) {
+    margin-top: -11rem;
+  }
+  @media screen and (min-width: 2000px) {
+    max-height: 34rem;
+  }
 }

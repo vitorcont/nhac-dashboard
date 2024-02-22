@@ -46,7 +46,7 @@ const en = {
       LOGIN: {
         TITLE: "Stay up to date with news and promotions from your favorite restaurants",
         DESCRIPTION: "Explore gastronomic experiences near you",
-        RESGISTERED: "Already have an account",
+        REGISTERED: "Already have an account",
         ERROR: "Check your credentials and try again...",
       },
       REGISTER: {

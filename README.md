@@ -2,6 +2,10 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Nhac! Aplicação de Gastronomia
 
+Acesse o projeto utilizando o link abaixo:
+
+- https://nhac.conti-server.com.br/
+
 Este projeto é uma aplicação de gastronomia, onde é possível encontrar restaurantes, bares entre outros, o usuário pode se cadastrar e salvar seus restaurantes favoritos, além de poder visualizar os pratos e bebidas disponíveis.
 
 A plataforma foi construida utilizando o framework NextJS, com o intuito de criar uma aplicação única, simplificando o desenvolvimento de seu front-end e back-end, além de utilizar o banco de dados PostgreSQL com o ORM Prisma.

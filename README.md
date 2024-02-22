@@ -22,6 +22,10 @@ Seu frontend foi construido tomando como principio a responsividade, foi utiliza
 
 - [Board](https://trello.com/invite/b/xiBSMhF1/ATTI869d3f09972ef9b92bd7312e9c0480af635A323F/nhac) - Trello para a organização das tarefas
 
+### Diagrama DER
+![image](https://github.com/vitorcont/nhac-dashboard/assets/69795902/98841b12-de6f-4ad0-bd84-a81b42f6fd56)
+
+
 ### Como executar o projeto localmente
 
 Para rodar o projeto será nescessário ter o NodeJS instalado na versão 18.0.0 ou superior, utilize o gerenciador de pacote de sua preferência.

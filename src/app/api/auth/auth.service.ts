@@ -36,10 +36,12 @@ const authService = {
       throw error;
     }
   },
-  validate: async (token: string) => {
+  refresh: async (token: string, refreshToken: string, user: IUser.IUser) => {
     try {
-      const user = jwt.verify(token, process.env.JWT_SECRET as string);
-      return user;
+      const accessValidated = jwt.verify(token, process.env.JWT_SECRET as string);
+      const refreshValidated = jwt.verify(refreshToken, process.env.JWT_SECRET as string);
+
+      return accessValidated;
     } catch (error) {
       console.error(error);
       throw new HttpError(401, "Invalid token");

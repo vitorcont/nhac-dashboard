@@ -2,6 +2,7 @@
 
 import { Grid } from "@mui/material";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { RestaurantsVertical } from "@portal/components";
 import { restaurantsApi } from "@portal/service/restaurants.api";
@@ -10,7 +11,7 @@ import useRestaurantsStore from "@portal/store/restaurants.store";
 const FavoritePage = () => {
   const { setRestaurantFavorites, restaurantsFavorites } = useRestaurantsStore((state) => state);
   const [loading, setLoading] = useState(false);
-
+  const { t } = useTranslation();
   const fetchFavorites = async () => {
     try {
       setLoading(true);
@@ -36,15 +37,14 @@ const FavoritePage = () => {
               titleColor="#FFF"
               loading={loading}
               data={restaurantsFavorites}
-              title="Favoritos"
+              title={t("UTILS.TITLES.FAVORITES")}
             />
           </div>
         ) : (
           <section className="w-full flex items-center flex-col z-10">
             <div className="info-container bottom-pd">
               <h1 className="mb-16 text-xl text-center bold text-white">
-                Você ainda não tem restaurantes favoritos, adicione alguns e volte aqui para ver sua
-                lista!
+                {t("PAGES.FAVORITES.EMPTY")}
               </h1>
               <img src="/ic_empty-favs.svg" className="mb-16" alt="logo" />
             </div>

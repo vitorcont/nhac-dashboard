@@ -11,6 +11,7 @@ import { LabelButton } from "@portal/components";
 import { AuthActionEnum, AuthContext } from "@portal/context/auth-provider";
 interface FooterProps {
   setOpenLogin: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpenProfile: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const Footer = (props: FooterProps) => {
@@ -45,7 +46,9 @@ export const Footer = (props: FooterProps) => {
             </IconButton>
           </nav>
           <nav>
-            <IconButton onClick={() => router.push("/")} className="flex  flex-col items-center">
+            <IconButton
+              onClick={() => props.setOpenProfile(true)}
+              className="flex  flex-col items-center">
               <AccountCircleIcon color="secondary" fontSize="medium" />
               <p>{t("UTILS.TABBAR.PROFILE")}</p>
             </IconButton>

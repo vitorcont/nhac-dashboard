@@ -13,10 +13,16 @@ export const userApi = {
 
     return data;
   },
-  register: async (data: IUser.ICreateUser) => {
+  register: async (userData: IUser.ICreateUser) => {
     const intance = getApiInstance();
-    const response = await intance.post(`/api/user`, data);
+    const { data } = await intance.post(`/api/user`, userData);
 
-    return response;
+    return data;
+  },
+  update: async (userId: string, userData: IUser.IUpdateUser) => {
+    const intance = getApiInstance();
+    const { data } = await intance.put(`/api/user/${userId}`, userData);
+
+    return data;
   },
 };

@@ -177,7 +177,11 @@ export default function RestaurantDetails({ params }: { params: { id: string } }
         data={restaurantDetails?.items ?? []}
       />
       <section className={`w-full bg-primary bottom-pd`}>
-        <RestaurantsHorizontal loading={loadingList} data={restaurantList} title="Outras opções" />
+        <RestaurantsHorizontal
+          loading={loadingList}
+          data={restaurantList}
+          title={t("ANOTHER_RESTAURANTS")}
+        />
       </section>
     </Grid>
   );

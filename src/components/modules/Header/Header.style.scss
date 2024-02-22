@@ -1,0 +1,6 @@
+.header-title {
+  font-size: 1.875rem;
+  @media screen and (max-width: 768px) {
+    font-size: 1.3rem /* 36px */;
+  }
+}

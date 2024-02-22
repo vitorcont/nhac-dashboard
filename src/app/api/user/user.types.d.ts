@@ -1,10 +1,13 @@
-import { $Enums } from "@prisma/client";
 export as namespace IUser;
 
 export interface ICreateUser {
   email: string;
   name: string;
   password: string;
+}
+
+export interface IUpdateUser {
+  name: string;
 }
 
 export interface IUser extends ICreateUser {

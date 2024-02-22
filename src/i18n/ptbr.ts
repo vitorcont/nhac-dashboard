@@ -8,6 +8,8 @@ const pt = {
       BUTTON: "Retornar a página principal",
       EXIT: "Sair",
       REGISTER: "Registrar",
+      CLOSE: "Fechar",
+      LOGOUT: "Logout",
     },
     TITLES: {
       FAVORITES: "Favoritos",
@@ -40,6 +42,7 @@ const pt = {
       },
     },
     MODAL: {
+      DESCRIPTION: "Explore as experiências gastronomicas próximas de você",
       LOGIN: {
         TITLE: "Fique por dentro das novidades e promoções de seus restaurantes favoritos",
         DESCRIPTION: "Explore as experiências gastronomicas próximas de você",
@@ -50,6 +53,12 @@ const pt = {
         TITLE: "Cadastro",
         DESCRIPTION: "Preencha os campos para se cadastrar",
         SUCCESS: "Usuário cadastrado com sucesso!",
+      },
+      USER_MODAL: {
+        HELLO: "Olá,",
+        CHANGE_NAME: "Nesta aba você pode alterar seu nome e fazer logout da sua conta.",
+        SUCCESS: "Usuário atualizado com sucesso!",
+        ERROR: "Não foi possível atualizar seu nome, tente novamente...",
       },
     },
     TABBAR: {
@@ -66,6 +75,10 @@ const pt = {
     NOT_FOUND: {
       TITLE: "Ops, não foi possível encontrar essa página...",
       BUTTON: "Retornar a página principal",
+    },
+    FAVORITES: {
+      EMPTY:
+        "Você ainda não tem restaurantes favoritos, adicione alguns e volte aqui para ver sua lista!",
     },
   },
 };

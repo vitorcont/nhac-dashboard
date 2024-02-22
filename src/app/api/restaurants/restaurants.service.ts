@@ -109,6 +109,7 @@ const restaurantsService = {
             userFavorites: {
               where: {
                 userId,
+                deletedAt: null,
               },
             },
           },

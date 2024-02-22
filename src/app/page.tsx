@@ -5,14 +5,17 @@ import { $Enums } from "@prisma/client";
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Banner, RestaurantsHorizontal, RestaurantsVertical } from "@portal/components";
+import { Banner, BannerList, RestaurantsHorizontal, RestaurantsVertical } from "@portal/components";
+import { promotionsApi } from "@portal/service/promotions.spi";
 import { restaurantsApi } from "@portal/service/restaurants.api";
+import usePromotionsStore from "@portal/store/promotions.store";
 import useRestaurantsStore from "@portal/store/restaurants.store";
 
 export default function Home() {
   const { restaurantList, setRestaurantFilteredList, setRestaurantList } = useRestaurantsStore(
     (state) => state
   );
+  const { promotionsList, setPromotionsList } = usePromotionsStore((state) => state);
   const newRestaurants = useMemo(
     () => restaurantList.filter((restaurant) => restaurant.category === $Enums.Category.NEW),
     [restaurantList]
@@ -21,15 +24,17 @@ export default function Home() {
     () => restaurantList.filter((restaurant) => restaurant.category !== $Enums.Category.NEW),
     [restaurantList]
   );
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const { t } = useTranslation();
 
-  const fetchRestaurants = async () => {
+  const fetchHomeData = async () => {
     try {
       setLoading(true);
-      const data = await restaurantsApi.list();
-      setRestaurantList(data);
-      setRestaurantFilteredList(data);
+      const restaurants = await restaurantsApi.list();
+      const promotions = await promotionsApi.list();
+      setRestaurantList(restaurants);
+      setPromotionsList(promotions);
+      setRestaurantFilteredList(restaurants);
       setLoading(false);
     } catch (err) {
       console.error(err);
@@ -37,7 +42,7 @@ export default function Home() {
   };
 
   useEffect(() => {
-    fetchRestaurants();
+    fetchHomeData();
   }, []);
 
   return (
@@ -49,14 +54,7 @@ export default function Home() {
         data={newRestaurants}
         title={t("UTILS.TITLES.NEWS")}
       />
-      <div className="w-full flex flex-row justify-between pd-sides">
-        <Grid item xs={5.9}>
-          <Banner />
-        </Grid>
-        <Grid item xs={5.9}>
-          <Banner />
-        </Grid>
-      </div>
+      <BannerList data={promotionsList} loading={loading} />
       <div className={"bottom-pd w-full"}>
         <RestaurantsVertical
           loading={loading}

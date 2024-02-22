@@ -6,3 +6,4 @@ export * from "./RegisterModal/RegisterModal";
 export * from "./RestaurantsList/RestaurantsHorizontal";
 export * from "./RestaurantsList/RestaurantsVertical";
 export * from "./SearchBar/SearchBar";
+export * from "./BannerList/BannerList";

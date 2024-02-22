@@ -19,7 +19,6 @@ i18n.use(initReactI18next).init({
       translation: { ...es },
     },
   },
-  lng: "pt",
   defaultNS: "translation",
   fallbackLng: "pt",
   interpolation: {

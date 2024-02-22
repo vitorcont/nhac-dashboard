@@ -75,7 +75,7 @@ export const UserModal = (props: UserModalProps) => {
             }
           />
         </div>
-        <div className="w-9/12 self-center mt-20">
+        <div className="min-w-52 self-center mt-20">
           <Button
             onPress={() => {
               dispatch({ type: AuthActionEnum.LOGOUT });
@@ -84,7 +84,7 @@ export const UserModal = (props: UserModalProps) => {
             label={t("UTILS.BUTTONS.LOGOUT")}
           />
         </div>
-        <div className="w-7/12 self-center mt-6">
+        <div className="min-w-32 self-center mt-6">
           <Button
             onPress={() => {
               props.setOpen(false);

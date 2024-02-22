@@ -8,8 +8,8 @@
   height: 24rem;
   transition: linear 0.2s;
   cursor: pointer;
-  @media screen and (min-width: 730px) {
-    height: 18rem;
+  @media screen and (max-width: 730px) {
+    height: 16rem;
   }
   background-color: black;
   overflow: hidden;
@@ -32,7 +32,7 @@
   transition: linear 0.2s;
   transform: scale(1.05);
   height: 26rem;
-  @media screen and (min-width: 730px) {
-    height: 20rem;
+  @media screen and (max-width: 730px) {
+    height: 17rem;
   }
 }

@@ -7,13 +7,13 @@ const es = {
       CREATE_NEW: "Crear mi cuenta",
       BUTTON: "Volver a la página principal",
       EXIT: "Salir",
-      REGISTER: "Registrar",
+      REGISTER: "Registrarse",
       CLOSE: "Cerrar",
       LOGOUT: "Cerrar sesión",
     },
     TITLES: {
       FAVORITES: "Favoritos",
-      REGISTER: "Registrar",
+      REGISTER: "Registrarse",
       NEWS: "¡Novedades!",
       ANOTHER_RESTAURANTS: "Otros restaurantes",
       MENU: "Menú",
@@ -53,6 +53,7 @@ const es = {
         TITLE: "Registro",
         DESCRIPTION: "Completa los campos para registrarte",
         SUCCESS: "¡Usuario registrado exitosamente!",
+        ERROR: "No se pudo registrar el usuario, intenta nuevamente...",
       },
       USER_MODAL: {
         HELLO: "Hola,",

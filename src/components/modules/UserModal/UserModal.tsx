@@ -50,13 +50,13 @@ export const UserModal = (props: UserModalProps) => {
         open={errorSnackbar}
         setOpen={setErrorSnackbar}
         variant="error"
-        description={t("UTILS.MODAL.LOGIN.ERROR")}
+        description={t("UTILS.MODAL.USER_MODAL.ERROR")}
       />
       <DefaultSnackbar
         open={successSnackbar}
         setOpen={setSuccessSnackbar}
         variant="success"
-        description={t("UTILS.MODAL.REGISTER.SUCCESS")}
+        description={t("UTILS.MODAL.USER_MODAL.SUCCESS")}
       />
       <ResponsiveModal {...props}>
         <p className="mt-8 text-2xl bold primary">{t("UTILS.MODAL.USER_MODAL.HELLO")}</p>

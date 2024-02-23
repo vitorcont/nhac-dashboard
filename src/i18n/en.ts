@@ -3,8 +3,8 @@ const en = {
     BUTTONS: {
       LOADING: "Loading...",
       SEARCH_RESTAURANTS: "Search restaurants...",
-      LOGIN: "Log in",
-      CREATE_NEW: "Create my account",
+      LOGIN: "Login",
+      CREATE_NEW: "Create new account",
       BUTTON: "Return to homepage",
       EXIT: "Exit",
       REGISTER: "Register",
@@ -53,6 +53,7 @@ const en = {
         TITLE: "Registration",
         DESCRIPTION: "Fill in the fields to register",
         SUCCESS: "User registered successfully!",
+        ERROR: "Could not register your user, please try again...",
       },
       USER_MODAL: {
         HELLO: "Hello,",

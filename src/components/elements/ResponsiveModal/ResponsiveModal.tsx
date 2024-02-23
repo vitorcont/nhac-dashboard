@@ -17,7 +17,7 @@ export const ResponsiveModal = ({
     <ModalWrapper {...rest}>
       <section className="responsive-modal">
         <div className="responsive-modal__logo">
-          <h1 className="text-white bold text-5xl">{title}</h1>
+          <h1 className="responsive-modal__logo__title">{title}</h1>
           <p className="responsive-modal__logo__description">
             {description ?? t("UTILS.MODAL.DESCRIPTION")}
           </p>

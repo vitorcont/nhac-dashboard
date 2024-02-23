@@ -94,13 +94,13 @@ export const RegisterModal = (props: ModalWrapperProps) => {
         open={errorSnack}
         setOpen={setErrorSnack}
         variant="error"
-        description={t("UTILS.MODAL.USER_MODAL.ERROR")}
+        description={t("UTILS.MODAL.REGISTER.ERROR")}
       />
       <DefaultSnackbar
         open={successSnack}
         setOpen={setSuccessSnack}
         variant="success"
-        description={t("UTILS.MODAL.USER_MODAL.SUCCESS")}
+        description={t("UTILS.MODAL.REGISTER.SUCCESS")}
       />
       <ResponsiveModal
         title={t("UTILS.MODAL.REGISTER.TITLE")}
@@ -147,7 +147,7 @@ export const RegisterModal = (props: ModalWrapperProps) => {
           </div>
           <div className="mt-2 self-start">
             {passwordErrors.map((error, index) => (
-              <li key={index} className="text-sm primary">
+              <li key={index} className="error-text">
                 {error}
               </li>
             ))}

@@ -77,11 +77,11 @@ export const LoginModal = (props: LoginModalProps) => {
         description={t("UTILS.MODAL.LOGIN.ERROR")}
       />
       <ResponsiveModal {...props}>
-        <p className="bold text-lg primary text-center px-8 mt-6">{t("UTILS.MODAL.LOGIN.TITLE")}</p>
+        <p className="login-modal__description">{t("UTILS.MODAL.LOGIN.TITLE")}</p>
         <div className="mt-4 self-center">
           <Button label={t("UTILS.BUTTONS.CREATE_NEW")} onPress={() => props.onRegister()} />
         </div>
-        <div className="mt-12 flex-row items-center w-full justify-between">
+        <div className="login-modal__line-wrapper">
           <hr className="w-2/12" />
           <p className=" primary">{t("UTILS.MODAL.LOGIN.REGISTERED")}</p>
           <hr className="w-2/12" />
@@ -90,7 +90,7 @@ export const LoginModal = (props: LoginModalProps) => {
           onSubmit={(e) => {
             !loading ? formik.handleSubmit(e) : () => {};
           }}
-          className="py-4 mx-8 flex-col items-center">
+          className="login-modal__form">
           <div className="mt-6 w-full">
             <UnderlinedInput
               label={t("UTILS.INPUTS.EMAIL.LABEL")}
@@ -110,12 +110,22 @@ export const LoginModal = (props: LoginModalProps) => {
               helperText={formik.errors.password}
             />
           </div>
-          <div className="mt-12">
+          <div className="login-modal__form__submit">
             <Button
               label={t("UTILS.BUTTONS.LOGIN")}
               type="submit"
               disabled={!!(formik.errors.email || formik.errors.password)}
               loading={loading}
+            />
+          </div>
+          <div className="login-modal__form__close">
+            <Button
+              onPress={() => {
+                props.setOpen(false);
+              }}
+              variant="outlined"
+              label={t("UTILS.BUTTONS.CLOSE")}
+              type="reset"
             />
           </div>
         </form>

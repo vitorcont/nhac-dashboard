@@ -1,0 +1,8 @@
+.error-text {
+  color: $primary;
+  font-size: 0.8rem;
+  font-family: $inter-light;
+  @media screen and (max-width: 730px) {
+    font-size: 0.7rem;
+  }
+}

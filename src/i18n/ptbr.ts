@@ -53,6 +53,7 @@ const pt = {
         TITLE: "Cadastro",
         DESCRIPTION: "Preencha os campos para se cadastrar",
         SUCCESS: "Usuário cadastrado com sucesso!",
+        ERROR: "Não foi possível cadastrar seu usuário, tente novamente...",
       },
       USER_MODAL: {
         HELLO: "Olá,",

@@ -10,6 +10,9 @@
 .MuiFormHelperText-root {
   font-family: $inter-regular !important;
   margin-left: 0px !important;
+  @media screen and (max-width: 730px) {
+    font-size: 10px !important;
+  }
 }
 
 .input-loading {

@@ -11,10 +11,32 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v1
-  install_and_build:
+  install_deps:
     runs-on: self-hosted
-    name: Install deps and build
+    name: Install deps
     needs: pull
+    steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.19.0
+      - name: Install dependencies
+        run: yarn install
+      - name: Update prisma dependencies
+        run: npx prisma generate
+  run_tests:
+    runs-on: self-hosted
+    name: Run tests
+    needs: install_deps
+    steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.19.0
+      - name: Run tests
+        run: yarn test
+  build:
+    runs-on: self-hosted
+    name: Build
+    needs: run_tests
     env:
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
       ALGORITHM: ${{ secrets.ALGORITHM }}
@@ -25,10 +47,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18.19.0
-      - name: Install dependencies
-        run: yarn install
-      - name: Update prisma dependencies
-        run: npx prisma generate
       - name: Build
         run: yarn build
   upload_container:

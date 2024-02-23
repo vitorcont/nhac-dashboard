@@ -7,6 +7,7 @@ import userService from "./user.services";
 export async function GET() {
   try {
     const list = await userService.list();
+    console.log(list);
 
     return NextResponse.json(list);
   } catch (error) {

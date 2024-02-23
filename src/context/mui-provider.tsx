@@ -13,7 +13,6 @@ interface MuiProviderProps {
 }
 
 const MuiProvider = (props: MuiProviderProps) => {
-  i18n.changeLanguage("pt");
   const theme = createTheme({
     palette: {
       primary: {

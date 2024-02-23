@@ -52,7 +52,7 @@ jobs:
   upload_container:
     runs-on: self-hosted
     name: Update Container
-    needs: install_and_build
+    needs: build
     env:
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
       ALGORITHM: ${{ secrets.ALGORITHM }}

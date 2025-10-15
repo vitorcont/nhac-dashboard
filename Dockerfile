@@ -1,6 +1,7 @@
 # Install dependencies only when needed
-FROM node:18-alpine AS deps
-RUN apk add --no-cache libc6-compat
+FROM node:lts-alpine AS deps
+RUN apk add --no-cache openssl libc6-compat
+
 WORKDIR /app
 
 # Install dependencies based on the preferred package manager
@@ -11,7 +12,9 @@ RUN \
   fi
 
 # Rebuild the source code only when needed
-FROM node:18-alpine AS builder
+FROM node:lts-alpine AS builder
+RUN apk add --no-cache openssl libc6-compat
+
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
@@ -26,7 +29,9 @@ RUN \
   fi
 
 # Production image, copy all the files and run next
-FROM node:18-alpine AS runner
+FROM node:lts-alpine AS runner
+RUN apk add --no-cache openssl libc6-compat
+
 WORKDIR /app
 
 ENV NODE_ENV production

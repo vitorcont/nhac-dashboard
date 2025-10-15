@@ -1,6 +1,6 @@
 # Install dependencies only when needed
 FROM node:18-alpine AS deps
-RUN apk add --no-cache libc6-compat openssl
+RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 # Install dependencies based on the preferred package manager
@@ -12,14 +12,9 @@ RUN \
 
 # Rebuild the source code only when needed
 FROM node:18-alpine AS builder
-RUN apk add --no-cache openssl
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-
-# Configure Prisma for Alpine Linux with OpenSSL 3.x
-ENV PRISMA_QUERY_ENGINE_BINARY=query-engine-rhel-openssl-3.0.x
-ENV PRISMA_SCHEMA_ENGINE_BINARY=schema-engine-rhel-openssl-3.0.x
 
 # Generate Prisma Client
 RUN npx prisma generate
@@ -32,16 +27,11 @@ RUN \
 
 # Production image, copy all the files and run next
 FROM node:18-alpine AS runner
-RUN apk add --no-cache openssl
 WORKDIR /app
 
 ENV NODE_ENV production
 # Uncomment the following line in case you want to disable telemetry during runtime.
 # ENV NEXT_TELEMETRY_DISABLED 1
-
-# Configure Prisma for Alpine Linux with OpenSSL 3.x
-ENV PRISMA_QUERY_ENGINE_BINARY=query-engine-rhel-openssl-3.0.x
-ENV PRISMA_SCHEMA_ENGINE_BINARY=schema-engine-rhel-openssl-3.0.x
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
